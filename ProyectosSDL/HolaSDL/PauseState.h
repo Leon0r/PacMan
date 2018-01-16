@@ -7,4 +7,8 @@ class PauseState :
 public:
 	PauseState();
 	~PauseState();
+
+	void update();
+	void render();
+	bool handleEvent(SDL_Event& e);
 };

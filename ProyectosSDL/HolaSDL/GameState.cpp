@@ -22,12 +22,15 @@ void GameState::render()
 		o->render();
 }
 
-void GameState::handleEvent(SDL_Event& e) 
+bool GameState::handleEvent(SDL_Event& e) 
 {
 	bool handled = false; // Comprueba si el evento ya ha sido recogido por algún botón
 	auto it = objects.begin();
 	while (it != objects.end() && !handled)
 		if ((*it)->handleEvent(e))
 			handled = true;
-		else ++it;
+		else 
+			++it;
+
+	return handled; // Devuelve true si algun objeto lo ha manejado y false si no
 }

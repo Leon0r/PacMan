@@ -19,5 +19,5 @@ public:
 
 	virtual void update();
 	virtual void render();
-	virtual void handleEvent(SDL_Event& e);
+	virtual bool handleEvent(SDL_Event& e);
 };

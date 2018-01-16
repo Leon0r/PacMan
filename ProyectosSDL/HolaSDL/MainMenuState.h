@@ -7,4 +7,8 @@ class MainMenuState :
 public:
 	MainMenuState();
 	~MainMenuState();
+
+	void update();
+	void render();
+	bool handleEvent(SDL_Event& e);
 };
