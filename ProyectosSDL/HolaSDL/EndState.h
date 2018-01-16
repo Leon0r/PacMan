@@ -5,7 +5,7 @@ class EndState :
 	public GameState
 {
 public:
-	EndState();
+	EndState(Game* game);
 	~EndState();
 
 	void update();

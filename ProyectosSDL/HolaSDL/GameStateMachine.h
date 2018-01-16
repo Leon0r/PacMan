@@ -4,10 +4,18 @@
 #include "MainMenuState.h"
 #include "PauseState.h"
 
+using namespace std;
+
 class GameStateMachine
 {
+	stack <GameState*> states;
+
 public:
 	GameStateMachine();
 	~GameStateMachine();
-};
 
+	GameState* currentState();
+	void changeState();
+	void pushState(GameState* state);
+	void popState();
+};

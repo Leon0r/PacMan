@@ -1,7 +1,8 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState()
+MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
+
 }
 
 MainMenuState::~MainMenuState()

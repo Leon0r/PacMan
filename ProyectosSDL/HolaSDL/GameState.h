@@ -1,12 +1,12 @@
 #pragma once
 #include <list>
-#include "Game.h"
 #include "GameObject.h"
 #include "SDL.h"
 #include "SDL_image.h"
 
 using namespace std; /// Para list
 
+class Game;
 class GameState
 {
 protected:
@@ -14,7 +14,7 @@ protected:
 	Game* game;
 
 public:
-	GameState();
+	GameState(Game* game);
 	virtual ~GameState();
 
 	virtual void update();

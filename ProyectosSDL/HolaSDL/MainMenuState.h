@@ -5,7 +5,7 @@ class MainMenuState :
 	public GameState
 {
 public:
-	MainMenuState();
+	MainMenuState(Game* game);
 	~MainMenuState();
 
 	void update();

@@ -1,6 +1,6 @@
 #include "EndState.h"
 
-EndState::EndState()
+EndState::EndState(Game* game) : GameState(game)
 {
 }
 

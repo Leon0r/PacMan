@@ -1,21 +1,33 @@
 #include "PauseState.h"
+#include "Game.h" // GameState.h no incluye Game.h
 
-PauseState::PauseState()
+PauseState::PauseState(Game* game) : GameState(game)
 {
+
 }
 
 PauseState::~PauseState()
 {
-}
-
-void PauseState::update() {
 
 }
 
-void PauseState::render() {
+void PauseState::update() 
+{
 
 }
 
-bool PauseState::handleEvent(SDL_Event& e) {
+void PauseState::render() 
+
+{
+
+}
+
+bool PauseState::handleEvent(SDL_Event& e) 
+{
 	return true;
+}
+
+void PauseState::resume(Game* game) 
+{
+	game->getStateMachine()->popState();
 }
