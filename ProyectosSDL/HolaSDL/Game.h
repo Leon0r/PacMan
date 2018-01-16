@@ -1,6 +1,8 @@
 #pragma once
 #include "GameStateMachine.h"
 #include "Textures.h"
+#include <iostream>
+#include <string>
 
 const int NUM_TEXTURES = 5;
 
@@ -42,4 +44,5 @@ public:
 	void handleEvents();
 
 	GameStateMachine* getStateMachine() { return gameStateMachine; };
+	
 };

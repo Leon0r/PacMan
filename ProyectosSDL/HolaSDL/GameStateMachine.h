@@ -18,4 +18,6 @@ public:
 	void changeState();
 	void pushState(GameState* state);
 	void popState();
+
+	string getGameState();
 };

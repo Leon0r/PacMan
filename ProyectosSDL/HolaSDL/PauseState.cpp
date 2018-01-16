@@ -17,7 +17,6 @@ void PauseState::update()
 }
 
 void PauseState::render() 
-
 {
 
 }
