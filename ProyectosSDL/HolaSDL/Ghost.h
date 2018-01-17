@@ -1,9 +1,15 @@
 #pragma once
 #include "GameCharacter.h"
+#include <vector>
+
+const unsigned int NUM_DIRS = 4; // Numero posible de dirs
 
 class Ghost :
 	public GameCharacter
 {
+protected:
+	// inicializa el vector de direcciones a las 4 posibles (arriba, abajo, izquierda, derecha)
+	vector<par> directions{ { 0,-1 },{ 0,1 },{ -1,0 },{ 1,0 } };
 public:
 	Ghost(PlayState* playState);
 	virtual ~Ghost();

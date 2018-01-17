@@ -6,9 +6,9 @@ class Pacman :
 	public GameCharacter
 {
 private:
-	unsigned int points,
-				 energy,
-				 lifes;
+	unsigned int points = 0,
+				 energy = 0,
+				 lifes = 3;
 public:
 	Pacman(PlayState* playState);
 	~Pacman();
