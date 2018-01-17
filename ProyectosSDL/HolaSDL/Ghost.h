@@ -1,6 +1,6 @@
 #pragma once
-#include "GameCharacter.h"
 #include <vector>
+#include "GameCharacter.h"
 
 const unsigned int NUM_DIRS = 4; // Numero posible de dirs
 
