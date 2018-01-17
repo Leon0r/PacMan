@@ -1,6 +1,6 @@
 #pragma once
 #include "PacManObject.h"
-
+// struct "par" para manejar direcciones y posiciones como pares (x, y) de enteros
 struct par
 {
 	int x;
@@ -13,8 +13,8 @@ class GameCharacter :
 protected:
 	par posIni,
 		posAct,
-		dir;
 
+		dir;
 	par frame; /// Para las animaciones
 
 public:
@@ -29,4 +29,3 @@ public:
 	// Escribe posAct, posIni, dir del GameCharacter
 	virtual void saveToFile(ofstream& level);
 };
-
