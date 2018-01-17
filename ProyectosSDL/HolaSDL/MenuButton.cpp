@@ -25,6 +25,8 @@ bool MenuButton::handleEvent(SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT)
 		{
 			SDL_Point p;
+			SDL_GetMouseState(&p.x, &p.y);
+
 			if (SDL_PointInRect(&p, &destRect)) 
 			{
 				handled = true;

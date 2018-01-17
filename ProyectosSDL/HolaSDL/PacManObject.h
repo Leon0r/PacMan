@@ -12,8 +12,9 @@ protected:
 	int cellSize; // Tama�o de las celdas (todas iguales)
 
 public:
-	PacManObject();
-	~PacManObject();
+	PacManObject(PlayState* playState);
+	virtual ~PacManObject();
+
 	virtual void update() = 0;
 	virtual void render() = 0;
 	virtual bool handleEvent(SDL_Event& event) = 0;

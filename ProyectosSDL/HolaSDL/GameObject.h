@@ -11,7 +11,7 @@ protected:
 
 public:
 	GameObject();
-	~GameObject();
+	virtual ~GameObject();
 
 	virtual void update() = 0;
 	virtual void render() = 0;
