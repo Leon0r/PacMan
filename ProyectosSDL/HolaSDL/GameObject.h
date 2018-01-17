@@ -1,14 +1,19 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Textures.h"
 
 class GameObject
 {
+protected:
+	Textures* texture;
+	SDL_Rect destRect;
+
 public:
 	GameObject();
 	~GameObject();
 
-	virtual void update();
-	virtual void render();
-	virtual bool handleEvent(SDL_Event& e);
+	virtual void update() = 0;
+	virtual void render() = 0;
+	virtual bool handleEvent(SDL_Event& event) = 0;
 };

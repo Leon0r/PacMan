@@ -20,7 +20,7 @@ void EndState::render()
 
 }
 
-bool EndState::handleEvent(SDL_Event& e) 
+bool EndState::handleEvent(SDL_Event& event) 
 {
 	return true;
 }

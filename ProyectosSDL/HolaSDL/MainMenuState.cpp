@@ -16,6 +16,6 @@ void MainMenuState::render() {
 
 }
 
-bool MainMenuState::handleEvent(SDL_Event& e) {
+bool MainMenuState::handleEvent(SDL_Event& event) {
 	return true;
 }

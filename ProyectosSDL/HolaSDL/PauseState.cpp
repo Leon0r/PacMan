@@ -20,7 +20,7 @@ void PauseState::render()
 
 }
 
-bool PauseState::handleEvent(SDL_Event& e) 
+bool PauseState::handleEvent(SDL_Event& event) 
 {
 	return true;
 }

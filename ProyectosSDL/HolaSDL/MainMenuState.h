@@ -10,5 +10,5 @@ public:
 
 	void update();
 	void render();
-	bool handleEvent(SDL_Event& e);
+	bool handleEvent(SDL_Event& event);
 };
