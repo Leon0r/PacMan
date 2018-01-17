@@ -2,7 +2,6 @@
 
 MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
-
 }
 
 MainMenuState::~MainMenuState()

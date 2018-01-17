@@ -4,6 +4,7 @@ Game::Game()
 {
 	gameStateMachine = new GameStateMachine();
 	gameStateMachine->pushState(new MainMenuState(this));
+
 }
 
 Game::~Game()
@@ -19,6 +20,7 @@ void Game::run()
 		update();
 		render();
 	}
+	
 }
 
 void Game::update()
@@ -29,6 +31,7 @@ void Game::update()
 void Game::render()
 {
 	gameStateMachine->currentState()->render();
+	
 }
 
 void Game::handleEvents() 

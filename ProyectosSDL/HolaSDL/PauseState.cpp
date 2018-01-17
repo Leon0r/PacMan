@@ -3,7 +3,6 @@
 
 PauseState::PauseState(Game* game) : GameState(game)
 {
-
 }
 
 PauseState::~PauseState()
