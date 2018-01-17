@@ -30,8 +30,8 @@ public:
 	void saveToFile(ofstream& level);
 
 	// Devuelve el número de comida (food y vitamins) del mapa
-	int getNumMaxFood() { return numMaxFood; };
+	int getNumMaxFood() { return numMaxFood; }
 	// Devuelve el tipo de la celda
-	int getCellType(int row, int col) { return(static_cast<int>(map[row][col])); };
+	int getCellType(int row, int col) { return(static_cast<int>(map[row][col])); }
 };
 

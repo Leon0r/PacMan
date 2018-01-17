@@ -9,7 +9,7 @@ class PacManObject :
 {
 protected:
 	PlayState* playState;
-	int cellSize; // Tama�o de las celdas (todas iguales)
+	int cellSize; // Tamaño de las celdas (todas iguales)
 
 public:
 	PacManObject(PlayState* playState);
