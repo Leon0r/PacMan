@@ -2,6 +2,7 @@
 
 MenuButton::MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick) :GameObject(texture)
 {
+	this->texture = texture;
 	destRect.x = x;
 	destRect.y = y;
 	destRect.h = h;

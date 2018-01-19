@@ -3,6 +3,10 @@
 #include "Textures.h"
 #include <iostream>
 #include <string>
+#include "FileNotFoundError.h"
+
+
+using namespace std;
 
 const int NUM_TEXTURES = 5;
 
@@ -23,6 +27,8 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de texturas
+
+	int winX, winY;
 
 	// Array con la información de las texturas
 	infoText infoT[NUM_TEXTURES]{
@@ -45,5 +51,9 @@ public:
 
 	void load();
 	GameStateMachine* getStateMachine() { return gameStateMachine; };
-	
+
+	Textures* getTexture(int pos) { return textures[pos]; }
+
+	void loadNewPlayState();
+	void loadSavedPlayState();
 };

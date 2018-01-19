@@ -3,6 +3,7 @@
 #include "EndState.h"
 #include "MainMenuState.h"
 #include "PauseState.h"
+#include "PlayState.h"
 
 using namespace std;
 

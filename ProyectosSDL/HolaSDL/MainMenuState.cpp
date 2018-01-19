@@ -1,15 +1,11 @@
 #include "MainMenuState.h"
 #include "MenuButton.h"
 
-MainMenuState::MainMenuState(Game* game, vector <Textures*> t) : GameState(game)
+MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
-	for (int i = 0; i < t.size(); i++) {
-		objects.push_back(new MenuButton(t[i], infoButton[i].x, infoButton[i].y, infoButton[i].h, infoButton[i].w, nullptr));
-	}
-
-	auto it = objects.begin();
-	(*it)->render();
-	++it;
+	new MenuButton(game->getTexture(1), 0, 0, 20, 50, loadNewGame);
+	new MenuButton(game->getTexture(2), 0, 0, 20, 50, loadSavedGame);
+	new MenuButton(game->getTexture(2), 0, 0, 20, 50, exitGame);
 }
 
 MainMenuState::~MainMenuState()
@@ -28,6 +24,14 @@ bool MainMenuState::handleEvent(SDL_Event& event) {
 	return GameState::handleEvent(event);
 }
 
-void MainMenuState::cargaNuevaPartida() {
+void MainMenuState::loadNewGame(Game* game) {
+	game->loadNewPlayState();
+}
 
+void MainMenuState::loadSavedGame(Game* game) {
+	game->loadSavedPlayState();
+}
+
+void MainMenuState::exitGame(Game* game) {
+	game->getStateMachine()->popState();
 }
