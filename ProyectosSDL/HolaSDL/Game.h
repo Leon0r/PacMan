@@ -20,6 +20,8 @@ struct infoText {
 class Game
 {
 private:
+	int winX,
+		winY;
 
 	bool endGame = false; // Booleano de control de fin de juego
 	GameStateMachine* gameStateMachine;
@@ -30,7 +32,7 @@ private:
 
 	int winX, winY;
 
-	// Array con la información de las texturas
+	// Array con la informaciï¿½n de las texturas
 	infoText infoT[NUM_TEXTURES]{
 		{ "..\\images\\Background.png", 1, 1 },
 		{ "..\\images\\LoadGame.png", 1, 1 },
