@@ -8,7 +8,7 @@ const int NUM_TEXTURES = 5;
 
 // Struct con lo necesario para inicializar las texturas
 struct infoText {
-	string filename;
+	const char* filename;
 	int numFils;
 	int numCols;
 };
@@ -43,6 +43,7 @@ public:
 	void render();
 	void handleEvents();
 
+	void load();
 	GameStateMachine* getStateMachine() { return gameStateMachine; };
 	
 };

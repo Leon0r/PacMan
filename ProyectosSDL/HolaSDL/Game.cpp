@@ -43,3 +43,10 @@ void Game::handleEvents()
 			gameStateMachine->currentState()->handleEvent(event);
 	}
 }
+
+void Game::load() {
+	for (int i = 0; i < NUM_TEXTURES; i++) {
+		textures[i] = new Textures;
+		textures[i]->loadTextureFromImage(renderer, infoT[i].filename, infoT[i].numFils, infoT[i].numCols);
+	}
+}
