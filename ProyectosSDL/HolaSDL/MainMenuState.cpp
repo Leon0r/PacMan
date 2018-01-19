@@ -10,7 +10,6 @@ MainMenuState::MainMenuState(Game* game) : GameState(game)
 
 MainMenuState::~MainMenuState()
 {
-
 }
 
 void MainMenuState::update() {

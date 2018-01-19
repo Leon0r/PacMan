@@ -28,6 +28,7 @@ void Game::run()
 		update();
 		render();
 	}
+	
 }
 
 void Game::update()
@@ -38,6 +39,7 @@ void Game::update()
 void Game::render()
 {
 	gameStateMachine->currentState()->render();
+	
 }
 
 void Game::handleEvents() 
