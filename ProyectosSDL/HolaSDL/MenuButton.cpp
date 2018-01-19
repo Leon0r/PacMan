@@ -1,7 +1,12 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton()
+MenuButton::MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick) :GameObject(texture)
 {
+	destRect.x = x;
+	destRect.y = y;
+	destRect.h = h;
+	destRect.w = w;
+	this->cbOnClick = cbOnClick;
 }
 
 MenuButton::~MenuButton()
@@ -35,3 +40,4 @@ bool MenuButton::handleEvent(SDL_Event& event)
 		}
 	return handled;
 }
+

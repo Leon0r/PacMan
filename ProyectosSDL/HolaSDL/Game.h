@@ -6,6 +6,13 @@
 
 const int NUM_TEXTURES = 5;
 
+// Struct con lo necesario para inicializar las texturas
+struct infoText {
+	string filename;
+	int numFils;
+	int numCols;
+};
+
 class Game
 {
 private:
@@ -16,13 +23,6 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de texturas
-
-	// Struct con lo necesario para inicializar las texturas
-	struct infoText {
-		const char* filename;
-		int numFils;
-		int numCols;
-	};
 
 	// Array con la información de las texturas
 	infoText infoT[NUM_TEXTURES]{

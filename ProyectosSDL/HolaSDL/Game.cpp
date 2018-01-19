@@ -3,7 +3,7 @@
 Game::Game()
 {
 	gameStateMachine = new GameStateMachine();
-	gameStateMachine->pushState(new MainMenuState(this));
+	gameStateMachine->pushState(new MainMenuState(this, {}));
 
 }
 

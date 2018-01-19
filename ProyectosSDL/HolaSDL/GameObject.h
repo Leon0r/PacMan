@@ -10,7 +10,8 @@ protected:
 	SDL_Rect destRect;
 
 public:
-	GameObject();
+	GameObject() {}
+	GameObject(Textures* texture);
 	virtual ~GameObject();
 
 	virtual void update() = 0;
