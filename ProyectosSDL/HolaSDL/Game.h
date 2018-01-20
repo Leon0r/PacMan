@@ -9,6 +9,8 @@
 using namespace std;
 
 const int NUM_TEXTURES = 5;
+const int WIN_WIDTH = 600;
+const int WIN_HEIGTH = 600;
 
 // Struct con lo necesario para inicializar las texturas
 struct infoText {
@@ -28,7 +30,9 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de texturas
 
-	int winX, winY;
+									  // Tamaño y posición de la ventana
+	int winX,
+		winY;
 
 	// Array con la información de las texturas
 	infoText infoT[NUM_TEXTURES]{
@@ -36,7 +40,7 @@ private:
 		{ "..\\images\\LoadGame.png", 1, 1 },
 		{ "..\\images\\NewGame.png", 1, 1 },
 		{ "..\\sprites\\pacmanCellsFull.png", 4, 1 },
-		{ "..\\sprites\\pacmanSheet.png", 4, 14 },
+		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
 	};
 
 public:
@@ -52,8 +56,9 @@ public:
 	void load();
 	GameStateMachine* getStateMachine() { return gameStateMachine; };
 
-	Textures* getTexture(int pos) { return textures[pos]; }
+	Textures* getTexture(int pos) { return (textures[pos]); };
 
 	void loadNewPlayState();
 	void loadSavedPlayState();
+	void exitGame();
 };

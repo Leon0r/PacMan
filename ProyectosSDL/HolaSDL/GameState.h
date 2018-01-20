@@ -14,6 +14,7 @@ class GameState
 {
 protected:
 	list <GameObject*> objects;
+
 	Game* game;
 
 	vector <SDL_Rect> infoButton;
