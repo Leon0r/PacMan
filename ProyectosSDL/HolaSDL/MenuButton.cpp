@@ -2,7 +2,7 @@
 
 MenuButton::MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick) :GameObject(texture)
 {
-	this->texture = texture;
+	GameObject::texture = texture;
 	destRect.x = x;
 	destRect.y = y;
 	destRect.h = h;
@@ -21,7 +21,7 @@ void MenuButton::update()
 
 void MenuButton::render()
 {
-	
+	texture->renderFullText(destRect);
 }
 
 bool MenuButton::handleEvent(SDL_Event& event)

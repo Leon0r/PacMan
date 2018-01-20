@@ -3,9 +3,9 @@
 
 MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
-	new MenuButton(game->getTexture(1), 0, 0, 20, 50, loadNewGame);
-	new MenuButton(game->getTexture(2), 0, 0, 20, 50, loadSavedGame);
-	new MenuButton(game->getTexture(2), 0, 0, 20, 50, exitGame);
+	objects.push_back(new MenuButton(game->getTexture(1), 100, 100, 20, 50, loadNewGame));
+	objects.push_back(new MenuButton(game->getTexture(2), 500, 500, 20, 50, loadSavedGame));
+	objects.push_back(new MenuButton(game->getTexture(2), 250, 250, 20, 50, exitGame));
 }
 
 MainMenuState::~MainMenuState()
@@ -13,11 +13,11 @@ MainMenuState::~MainMenuState()
 }
 
 void MainMenuState::update() {
-
+	GameState::update();
 }
 
 void MainMenuState::render() {
-
+	GameState::render();
 }
 
 bool MainMenuState::handleEvent(SDL_Event& event) {
@@ -25,6 +25,7 @@ bool MainMenuState::handleEvent(SDL_Event& event) {
 }
 
 void MainMenuState::loadNewGame(Game* game) {
+	cout << "coso";
 	game->loadNewPlayState();
 }
 
@@ -33,5 +34,5 @@ void MainMenuState::loadSavedGame(Game* game) {
 }
 
 void MainMenuState::exitGame(Game* game) {
-	game->getStateMachine()->popState();
+	game->exitGame();
 }
