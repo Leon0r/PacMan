@@ -1,13 +1,15 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick) :GameObject(texture)
+MenuButton::MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick, Game* game) :GameObject(texture)
 {
 	GameObject::texture = texture;
 	destRect.x = x;
 	destRect.y = y;
 	destRect.h = h;
 	destRect.w = w;
-	this->cbOnClick = cbOnClick;
+	this->game = game;
+	//this->cbOnClick(this->game) = cbOnClick(game);
+	setCallBack(cbOnClick);
 }
 
 MenuButton::~MenuButton()
