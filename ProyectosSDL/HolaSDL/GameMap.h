@@ -1,11 +1,10 @@
 #pragma once
 #include "PacManObject.h"
+
 class GameMap :
 	public PacManObject
 {
 private:
-	PlayState* playState;
-
 	unsigned int numRowMap,
 				 numColMap,
 				 numMaxFood = 0;
@@ -15,7 +14,7 @@ private:
 	MapCell** map; // Matriz de punteros
 
 public:
-	GameMap();
+	GameMap(PlayState* playState, Textures* texture);
 	~GameMap();
 	
 	void update();

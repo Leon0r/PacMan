@@ -1,15 +1,18 @@
 #pragma once
 #include "GameObject.h"
-#include "PlayState.h"
 #include <fstream> // Para escritura y lectura
 using namespace std;
+
+class PlayState;
+
+
 
 class PacManObject :
 	public GameObject
 {
 protected:
 	PlayState* playState;
-	int cellSize; // Tamaño de las celdas (todas iguales)
+	int cellSize = 74; // Tamaño de las celdas (todas iguales)
 
 public:
 	PacManObject(PlayState* playState);
