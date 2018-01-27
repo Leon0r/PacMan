@@ -5,14 +5,14 @@ using namespace std;
 
 class PlayState;
 
-
+const int cellSize = 20; // Tamaño de las celdas (todas iguales)
 
 class PacManObject :
 	public GameObject
 {
 protected:
 	PlayState* playState;
-	int cellSize = 74; // Tamaño de las celdas (todas iguales)
+	
 
 public:
 	PacManObject(PlayState* playState);
