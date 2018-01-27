@@ -32,9 +32,9 @@ void Game::run()
 
 	while (!endGame) 
 	{
-		handleEvents();
 		update();
 		render();
+		handleEvents();
 	}
 	
 }
@@ -46,6 +46,7 @@ void Game::update()
 
 void Game::render()
 {
+	clearScreen(); // Para limpiar la pantalla despues de cada frame
 	gameStateMachine->currentState()->render();
 	SDL_RenderPresent(renderer);
 }
@@ -67,6 +68,9 @@ void Game::load() {
 	}
 
 	gameStateMachine->pushState(new MainMenuState(this));
+
+	/// PRUEBAS CON OTROS ESTADOS Y SUS BOTONES, DEJAR SOLO EL MAIN MENU CUANDO FUNCIONE TODO
+	gameStateMachine->pushState(new PauseState(this));
 }
 
 void Game::loadNewPlayState() {
@@ -87,6 +91,5 @@ void Game::loadSavedPlayState() {
 
 void Game::exitGame() {
 	endGame = true;
-	//getStateMachine()->popState();
-	
+	getStateMachine()->popState();
 }

@@ -3,9 +3,9 @@
 
 MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
-	objects.push_back(new MenuButton(game->getTexture(1), 100, 100, 20, 50, loadNewGame));
-	objects.push_back(new MenuButton(game->getTexture(2), 500, 500, 20, 50, loadSavedGame));
-	objects.push_back(new MenuButton(game->getTexture(2), 250, 250, 20, 50, exitGame));
+	objects.push_back(new MenuButton(game->getTexture(1), 100, 100, 50, 120, loadNewGame, game));
+	objects.push_back(new MenuButton(game->getTexture(2), 400, 500, 50, 120, loadSavedGame, game));
+	objects.push_back(new MenuButton(game->getTexture(3), 250, 250, 50, 120, exitGame, game));
 }
 
 MainMenuState::~MainMenuState()

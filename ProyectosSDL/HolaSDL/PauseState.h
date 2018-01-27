@@ -8,8 +8,8 @@ public:
 	PauseState(Game* game);
 	~PauseState();
 
-	void update();
-	void render();
 	bool handleEvent(SDL_Event& event);
 	static void resume(Game* game);
+	static void exitGame(Game* game);
+	static void goToMenu(Game* game);
 };

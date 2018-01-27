@@ -12,7 +12,7 @@ protected:
 	CallBackOnClick* cbOnClick;
 
 public:
-	MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick);
+	MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick, Game* game);
 	~MenuButton();
 
 	void update();
