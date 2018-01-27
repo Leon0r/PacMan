@@ -32,9 +32,9 @@ void Game::run()
 
 	while (!endGame) 
 	{
-		handleEvents();
 		update();
 		render();
+		handleEvents();
 	}
 	
 }
@@ -87,6 +87,6 @@ void Game::loadSavedPlayState() {
 
 void Game::exitGame() {
 	endGame = true;
-	//getStateMachine()->popState();
+	getStateMachine()->popState();
 	
 }
