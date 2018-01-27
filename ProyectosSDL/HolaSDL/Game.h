@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const int NUM_TEXTURES = 5;
+const int NUM_TEXTURES = 7;
 const int WIN_WIDTH = 600;
 const int WIN_HEIGTH = 600;
 
@@ -39,6 +39,8 @@ private:
 		{ "..\\images\\Background.png", 1, 1 },
 		{ "..\\images\\LoadGame.png", 1, 1 },
 		{ "..\\images\\NewGame.png", 1, 1 },
+		{ "..\\images\\ExitGame.png", 1, 1 },
+		{ "..\\images\\ResumeGame.png", 1, 1 },
 		{ "..\\sprites\\pacmanCellsFull.png", 4, 1 },
 		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
 	};
@@ -57,6 +59,7 @@ public:
 	GameStateMachine* getStateMachine() { return gameStateMachine; };
 
 	Textures* getTexture(int pos) { return (textures[pos]); };
+	void clearScreen() { SDL_RenderClear(renderer); } // Para limpiar la pantalla
 
 	void loadNewPlayState();
 	void loadSavedPlayState();
