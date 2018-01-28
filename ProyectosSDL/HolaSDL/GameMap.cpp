@@ -1,11 +1,10 @@
 #include "GameMap.h"
+#include "PlayState.h"
 
 
 
-GameMap::GameMap() : PacManObject(playState)
-{
-
-}
+GameMap::GameMap(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
+{}
 
 
 GameMap::~GameMap()
@@ -16,21 +15,20 @@ GameMap::~GameMap()
 // Pinta el mapa en pantalla (renderCopy de las celdas)
 void GameMap::update()
 {
+}
+
+void GameMap::render()
+{
 	int aux;
 
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
 			destRect.y = cellSize * i;
 			destRect.x = cellSize * j;
-			aux = static_cast<int>(map[i][j]); /// Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
+			aux = static_cast<int>(map[i][j]); // Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
 			texture->renderFrame(destRect, aux, 0);
 		}
 	}
-}
-
-void GameMap::render()
-{
-
 }
 
 bool GameMap::handleEvent(SDL_Event& event)

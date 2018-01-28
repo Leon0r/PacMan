@@ -1,11 +1,10 @@
 #pragma once
 #include "PacManObject.h"
+
 class GameMap :
 	public PacManObject
 {
 private:
-	PlayState* playState;
-
 	unsigned int numRowMap,
 				 numColMap,
 				 numMaxFood = 0;
@@ -15,7 +14,7 @@ private:
 	MapCell** map; // Matriz de punteros
 
 public:
-	GameMap();
+	GameMap(PlayState* playState, Textures* texture);
 	~GameMap();
 	
 	void update();
@@ -33,5 +32,9 @@ public:
 	int getNumMaxFood() { return numMaxFood; }
 	// Devuelve el tipo de la celda
 	int getCellType(int row, int col) { return(static_cast<int>(map[row][col])); }
+	// Devuelve el numero de filas
+	int getNumRows() { return numRowMap; }
+	// Devuelve el numero de columnas
+	int getNumCols() { return numColMap; }
 };
 

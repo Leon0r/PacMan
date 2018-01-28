@@ -70,23 +70,25 @@ void Game::load() {
 	gameStateMachine->pushState(new MainMenuState(this));
 
 	/// PRUEBAS CON OTROS ESTADOS Y SUS BOTONES, DEJAR SOLO EL MAIN MENU CUANDO FUNCIONE TODO
-	gameStateMachine->pushState(new PauseState(this));
+	//gameStateMachine->pushState(new PauseState(this));
 }
 
 void Game::loadNewPlayState() {
-	gameStateMachine->pushState(new PlayState(this));
+	gameStateMachine->pushState(new PlayState(this, "..\\levels\\level01.pac"));
 }
 
 void Game::loadSavedPlayState() {
-	int level;
+	char* level;
+	level = "";
+
 	try {
 		cin >> level;
 	}
 	catch (FileNotFoundError e){
-		cout << e.what();
+		cout << e.what();	
 	}
 
-	gameStateMachine->pushState(new PlayState(this));
+	gameStateMachine->pushState(new PlayState(this, level));
 }
 
 void Game::exitGame() {

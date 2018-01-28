@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <vector>
+#include <sstream>
 #include "GameObject.h"
 #include "SDL.h"
 #include "SDL_image.h"

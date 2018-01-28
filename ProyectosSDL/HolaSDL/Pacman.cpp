@@ -1,6 +1,7 @@
 #include "Pacman.h"
+#include "PlayState.h" 
 
-Pacman::Pacman(PlayState* playState) : GameCharacter(playState)
+Pacman::Pacman(PlayState* playState, Textures* texture) : GameCharacter(playState, texture)
 {
 
 }
@@ -11,11 +12,6 @@ Pacman::~Pacman()
 }
 
 void Pacman::update() 
-{
-
-}
-
-void Pacman::render() 
 {
 
 }
