@@ -4,6 +4,7 @@
 
 SmartGhost::SmartGhost(PlayState* playState, Textures* texture) : Ghost(playState, texture)
 {
+	frame.x = 8;
 }
 
 

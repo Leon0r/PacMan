@@ -1,4 +1,5 @@
 #pragma once
+#include "checkML.h"
 #include "PacManObject.h"
 
 class GameCharacter :
@@ -15,7 +16,7 @@ protected:
 	/// solo hace falta saber donde empieza cada una
 
 public:
-	GameCharacter(PlayState* playState, Textures* textures);
+	GameCharacter(PlayState* playState, Textures* textures, int frameX);
 	virtual ~GameCharacter();
 
 	virtual void update();

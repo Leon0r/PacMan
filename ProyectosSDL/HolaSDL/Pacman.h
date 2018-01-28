@@ -1,4 +1,5 @@
 #pragma once
+#include "checkML.h"
 #include "GameCharacter.h"
 
 const int ENERGY_VIT = 200; // Tiempo que actúa la vitamina
@@ -9,6 +10,11 @@ private:
 	unsigned int points = 0,
 				 energy = 0,
 				 lifes = 3;
+
+	par nextDir = { 0,0 }; // buffer de direccion
+
+	void changeDir();
+
 public:
 	Pacman(PlayState* playState, Textures* textures);
 	~Pacman();

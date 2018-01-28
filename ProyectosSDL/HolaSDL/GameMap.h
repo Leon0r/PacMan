@@ -1,4 +1,5 @@
 #pragma once
+#include "checkML.h"
 #include "PacManObject.h"
 
 class GameMap :

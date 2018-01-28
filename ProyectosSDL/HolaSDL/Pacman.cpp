@@ -1,7 +1,7 @@
 #include "Pacman.h"
 #include "PlayState.h" 
 
-Pacman::Pacman(PlayState* playState, Textures* texture) : GameCharacter(playState, texture)
+Pacman::Pacman(PlayState* playState, Textures* texture) : GameCharacter(playState, texture, 10)
 {
 
 }
@@ -13,12 +13,33 @@ Pacman::~Pacman()
 
 void Pacman::update() 
 {
-
+	changeDir();
+	GameCharacter::update();
 }
 
 bool Pacman::handleEvent(SDL_Event& event) 
 {
-	return true;
+	bool handled = false;
+
+	if (event.type == SDL_KEYDOWN) {
+		if (event.key.keysym.sym == SDLK_UP) {
+			nextDir = { 0, -1 };
+			handled = true;
+		}
+		else if (event.key.keysym.sym == SDLK_DOWN) {
+			nextDir = { 0, 1 };
+			handled = true;
+		}
+		else if (event.key.keysym.sym == SDLK_LEFT) {
+			nextDir = { -1, 0 };
+			handled = true;
+		}
+		else if (event.key.keysym.sym == SDLK_RIGHT) {
+			nextDir = { 1, 0 };
+			handled = true;
+		}
+	}
+	return handled;
 }
 
 // Lee lo necesario del archivo para cargar el Pacman
@@ -34,4 +55,11 @@ void Pacman::saveToFile(ofstream& level)
 {
 	GameCharacter::saveToFile(level);
 	level << " " << energy << " " << lifes;
+}
+
+void Pacman::changeDir(){
+
+	par aux = playState->getNextPosToroide(posAct, nextDir);
+
+	if (!playState->hayMuro(aux)) { dir = nextDir; }
 }

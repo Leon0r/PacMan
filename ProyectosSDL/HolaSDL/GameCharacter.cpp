@@ -1,9 +1,9 @@
 #include "GameCharacter.h"
 #include "PlayState.h" 
 
-GameCharacter::GameCharacter(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
+GameCharacter::GameCharacter(PlayState* playState, Textures* texture, int frameX) : PacManObject(playState, texture)
 {
-	frame.x = 0;
+	frame.x = frameX;
 	frame.y = 0;
 }
 
@@ -14,7 +14,10 @@ GameCharacter::~GameCharacter()
 }
 
 void GameCharacter::update() {
-	posAct = playState->getNextPosToroide(posAct, dir);
+	par aux = playState->getNextPosToroide(posAct, dir);
+
+	if(!playState->hayMuro(aux))
+		posAct = aux;
 }
 
 void GameCharacter::render()
