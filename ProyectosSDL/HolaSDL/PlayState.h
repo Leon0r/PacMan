@@ -5,10 +5,15 @@
 #include "Ghost.h"
 #include "SmartGhost.h"
 
+const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
+
 class PlayState :
 	public GameState
 {
 private:
+
+	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
+
 	Pacman * pacman;
 	GameMap* map;
 	// Devuelve la sig pos en esa direccion teniendo en cuenta el toroide
@@ -21,6 +26,7 @@ public:
 	PlayState(Game* game, char* level);
 	~PlayState();
 
+	void update();
 	void render();
 	void loadGame(string level);
 	void saveToFile();

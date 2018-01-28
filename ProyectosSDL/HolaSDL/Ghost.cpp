@@ -51,10 +51,24 @@ void Ghost::possibleDirs() {
 // Elige la sig direccin con un random
 void Ghost::chooseRndDir() {
 	possibleDirs();
+	eraseBackDir();
 	if (numDirs > 0) {
 		// Genera la posicion de la nueva direccion con el modulo del random que sale
 		int nextDir = (rand() % numDirs);
 		dir.x = directions[nextDir].x;
 		dir.y = directions[nextDir].y;
+	}
+}
+
+// Elimina la direccion de la que viene si tiene mas direcciones posibles
+void Ghost::eraseBackDir() {
+	if (numDirs > 1) { // solo si hay al menos otra direccion
+		int i = 0;
+		// Busca la direccion contraria a la que viene y la descarta de igual forma que en Ghost::chooseRndDir()
+		while ((i < numDirs) && (directions[i].x != -dir.x || directions[i].y != -dir.y)) i++;
+		if (i < numDirs) {
+			swap(directions[i], directions[numDirs - 1]);
+			numDirs--;
+		}
 	}
 }

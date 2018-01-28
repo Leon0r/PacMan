@@ -12,6 +12,17 @@ PlayState::~PlayState()
 	
 }
 
+void PlayState::update() {
+	startTime = SDL_GetTicks();
+
+	GameState::update();
+
+	frameTime = SDL_GetTicks() - startTime; // Calcula el tiempo del update del playState
+
+	// Si no ha pasado el tiempo definido en FRAME_RATE, hay delay de lo que falta
+	if (frameTime<FRAME_RATE) SDL_Delay(FRAME_RATE - frameTime);
+}
+
 void PlayState::render() {
 	GameState::render();
 	// Como el pacman esta delante del mapa en la lista, 

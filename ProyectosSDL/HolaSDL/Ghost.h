@@ -13,6 +13,7 @@ protected:
 	vector<par> directions{ { 0,-1 },{ 0,1 },{ -1,0 },{ 1,0 } };
 	virtual void possibleDirs(); // comprueba las dirs a las que puede ir el fantasma (de 0 a numDirs, reordenando el vector)
 	void chooseRndDir(); // Elige la sig direccin con un random
+	void eraseBackDir(); // Elimina de las posibilidades la direccion de la que viene si es posible
 
 public:
 	Ghost(PlayState* playState, Textures* textures);
