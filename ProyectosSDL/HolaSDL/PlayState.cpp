@@ -12,11 +12,6 @@ PlayState::~PlayState()
 	
 }
 
-void PlayState::update()
-{
-	
-}
-
 void PlayState::render() {
 	GameState::render();
 	// Como el pacman esta delante del mapa en la lista, 
@@ -60,7 +55,9 @@ void PlayState::saveToFile() {
 
 // devuelve la sig posicion del toroide en la direccion 'dir'
 par PlayState::getNextPosToroide(const par pos, const par dir) {
-	par aux = pos;
+	par aux;
+	aux.x = pos.x;
+	aux.y = pos.y;
 
 	if (dir.x == 1)
 		aux.x = Right(pos.x);
@@ -72,6 +69,8 @@ par PlayState::getNextPosToroide(const par pos, const par dir) {
 		aux.y = Up(pos.y);
 	return aux;
 }
+
+bool PlayState::hayMuro(const par pos) { return(map->getCellType(pos.y, pos.x) == 1); }
 
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide
 unsigned int PlayState::Right(const int posX)

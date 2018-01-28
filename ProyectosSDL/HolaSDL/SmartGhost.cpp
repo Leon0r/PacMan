@@ -1,5 +1,5 @@
 #include "SmartGhost.h"
-
+#include "PlayState.h" 
 
 
 SmartGhost::SmartGhost(PlayState* playState, Textures* texture) : Ghost(playState, texture)

@@ -21,7 +21,6 @@ public:
 	PlayState(Game* game, char* level);
 	~PlayState();
 
-	void update();
 	void render();
 	void loadGame(string level);
 	void saveToFile();
@@ -30,5 +29,6 @@ public:
 	//por lo que se puede utilizar desde cualquier sitio que incluya a PacmanObject.h o alguna clase que herede de el
 
 	par getNextPosToroide(const par pos, const par dir); // devuelve la sig posicion del toroide en la direccion 'dir'
+	bool hayMuro(const par pos); // true si la posicion 'pos' hay muro
 };
 

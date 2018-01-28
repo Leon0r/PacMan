@@ -1,4 +1,5 @@
 #include "GameCharacter.h"
+#include "PlayState.h" 
 
 GameCharacter::GameCharacter(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
 {
@@ -12,9 +13,8 @@ GameCharacter::~GameCharacter()
 
 }
 
-void GameCharacter::update() 
-{
-
+void GameCharacter::update() {
+	posAct = playState->getNextPosToroide(posAct, dir);
 }
 
 void GameCharacter::render()

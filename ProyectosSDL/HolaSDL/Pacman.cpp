@@ -1,4 +1,5 @@
 #include "Pacman.h"
+#include "PlayState.h" 
 
 Pacman::Pacman(PlayState* playState, Textures* texture) : GameCharacter(playState, texture)
 {
