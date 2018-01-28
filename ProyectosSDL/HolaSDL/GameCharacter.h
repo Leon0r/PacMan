@@ -15,7 +15,7 @@ protected:
 	/// solo hace falta saber donde empieza cada una
 
 public:
-	GameCharacter(PlayState* playState);
+	GameCharacter(PlayState* playState, Textures* textures);
 	virtual ~GameCharacter();
 
 	virtual void update();

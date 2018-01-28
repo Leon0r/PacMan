@@ -8,11 +8,10 @@ private:
 	unsigned int age;
 
 public:
-	SmartGhost(PlayState* playState);
+	SmartGhost(PlayState* playState, Textures* textures);
 	~SmartGhost();
 
 	void update();
-	void render();
 	bool handleEvent(SDL_Event& event);
 	// Lee lo necesario del archivo para cargar el SmartGhost
 	void loadFromFile(ifstream& level);

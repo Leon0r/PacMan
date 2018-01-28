@@ -22,7 +22,7 @@ protected:
 	
 
 public:
-	PacManObject(PlayState* playState);
+	PacManObject(PlayState* playState, Textures* textures);
 	virtual ~PacManObject();
 
 	virtual void update() = 0;

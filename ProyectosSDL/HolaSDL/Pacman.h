@@ -10,11 +10,10 @@ private:
 				 energy = 0,
 				 lifes = 3;
 public:
-	Pacman(PlayState* playState);
+	Pacman(PlayState* playState, Textures* textures);
 	~Pacman();
 
 	void update();
-	void render();
 	bool handleEvent(SDL_Event& event);
 	// Lee lo necesario del archivo para cargar el Pacman
 	void loadFromFile(ifstream& level);

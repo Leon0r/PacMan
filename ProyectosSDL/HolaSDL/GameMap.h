@@ -32,5 +32,9 @@ public:
 	int getNumMaxFood() { return numMaxFood; }
 	// Devuelve el tipo de la celda
 	int getCellType(int row, int col) { return(static_cast<int>(map[row][col])); }
+	// Devuelve el numero de filas
+	int getNumRows() { return numRowMap; }
+	// Devuelve el numero de columnas
+	int getNumCols() { return numColMap; }
 };
 

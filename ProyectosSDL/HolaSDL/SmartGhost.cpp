@@ -2,7 +2,7 @@
 
 
 
-SmartGhost::SmartGhost(PlayState* playState) : Ghost(playState)
+SmartGhost::SmartGhost(PlayState* playState, Textures* texture) : Ghost(playState, texture)
 {
 }
 
@@ -12,11 +12,6 @@ SmartGhost::~SmartGhost()
 }
 
 void SmartGhost::update() 
-{
-
-}
-
-void SmartGhost::render()
 {
 
 }

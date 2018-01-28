@@ -1,8 +1,9 @@
 #include "GameCharacter.h"
 
-GameCharacter::GameCharacter(PlayState* playState) : PacManObject(playState)
+GameCharacter::GameCharacter(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
 {
-
+	frame.x = 0;
+	frame.y = 0;
 }
 
 

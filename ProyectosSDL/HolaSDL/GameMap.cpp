@@ -3,10 +3,8 @@
 
 
 
-GameMap::GameMap(PlayState* playState, Textures* texture) : PacManObject(playState)
-{
-	this->texture = texture;
-}
+GameMap::GameMap(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
+{}
 
 
 GameMap::~GameMap()

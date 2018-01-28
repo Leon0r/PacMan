@@ -1,6 +1,6 @@
 #include "Ghost.h"
 
-Ghost::Ghost(PlayState* playState) : GameCharacter(playState)
+Ghost::Ghost(PlayState* playState, Textures* texture) : GameCharacter(playState, texture)
 {
 
 }
@@ -13,10 +13,6 @@ Ghost::~Ghost()
 void Ghost::update()
 {
 	
-}
-void Ghost::render()
-{
-
 }
 
 bool Ghost::handleEvent(SDL_Event& event)
