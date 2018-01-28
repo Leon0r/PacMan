@@ -5,6 +5,13 @@ using namespace std;
 
 class PlayState;
 
+// struct "par" para manejar direcciones y posiciones como pares (x, y) de enteros
+struct par
+{
+	int x;
+	int y;
+};
+
 const int cellSize = 20; // Tamaño de las celdas (todas iguales)
 
 class PacManObject :

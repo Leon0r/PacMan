@@ -1,13 +1,6 @@
 #pragma once
 #include "PacManObject.h"
 
-// struct "par" para manejar direcciones y posiciones como pares (x, y) de enteros
-struct par
-{
-	int x;
-	int y;
-};
-
 class GameCharacter :
 	public PacManObject
 {

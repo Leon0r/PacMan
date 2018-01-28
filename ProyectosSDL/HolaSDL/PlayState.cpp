@@ -36,3 +36,7 @@ void PlayState::loadGame(string level)
 
 	file.close();
 }
+
+par PlayState::getNextPosToroide(par pos, par dir) {
+	return pos;
+}
