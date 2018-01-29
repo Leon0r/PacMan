@@ -30,6 +30,19 @@ void PlayState::render() {
 	pacman->render(); 
 }
 
+bool PlayState::handleEvent(SDL_Event & event)
+{
+	bool handled = false;
+	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_p) {
+			game->loadPauseState();
+			handled = true;
+	}
+	else {
+		handled = GameState::handleEvent(event);
+	}
+	return handled;
+}
+
 void PlayState::loadGame(string level)
 {
 	ifstream file(level);
