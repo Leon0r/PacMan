@@ -1,7 +1,7 @@
 #include "Ghost.h"
 #include "PlayState.h" 
 
-Ghost::Ghost(PlayState* playState, Textures* texture) : GameCharacter(playState, texture)
+Ghost::Ghost(PlayState* playState, Textures* texture) : GameCharacter(playState, texture, 0)
 {
 
 }
