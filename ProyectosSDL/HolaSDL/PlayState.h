@@ -29,6 +29,7 @@ public:
 
 	void update();
 	void render();
+	bool handleEvent(SDL_Event& event);
 	void loadGame(string level);
 	void saveToFile();
 

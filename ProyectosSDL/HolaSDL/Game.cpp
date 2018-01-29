@@ -91,6 +91,10 @@ void Game::loadSavedPlayState() {
 	gameStateMachine->pushState(new PlayState(this, level));
 }
 
+void Game::loadPauseState() {
+	gameStateMachine->pushState(new PauseState(this));
+}
+
 void Game::exitGame() {
 	endGame = true;
 	getStateMachine()->popState();
