@@ -1,5 +1,6 @@
 #pragma once
 #include <stdexcept>
+#include "checkML.h"
 using namespace std;
 
 class PacmanError:
