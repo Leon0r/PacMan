@@ -14,7 +14,12 @@ Pacman::~Pacman()
 void Pacman::update() 
 {
 	changeDir();
+	if (playState->isGhost())
+		playState->collisionHandler();
 	GameCharacter::update();
+	if (playState->isGhost())
+		playState->collisionHandler();
+	eatFood();
 }
 
 bool Pacman::handleEvent(SDL_Event& event) 
@@ -42,6 +47,31 @@ bool Pacman::handleEvent(SDL_Event& event)
 	return handled;
 }
 
+// Come comida y vitaminas
+void Pacman::eatFood()
+{
+	int type;
+	if (playState->isEatable(posAct, type))
+	{
+		if (playState->isEatable(posAct, type) && type == 3)
+			energy = ENERGY_VIT;
+		points++;
+		playState->wasEaten(posAct);
+	}
+
+} 
+
+void Pacman::death()
+{
+	if (lifes > 0) 
+	{
+		lifes--;
+		GameCharacter::death();
+	}
+	else /// MUERTE SUPREMA
+		;
+}
+
 // Lee lo necesario del archivo para cargar el Pacman
 void Pacman::loadFromFile(ifstream& level)
 {
@@ -61,5 +91,5 @@ void Pacman::changeDir(){
 
 	par aux = playState->getNextPosToroide(posAct, nextDir);
 
-	if (!playState->hayMuro(aux)) { dir = nextDir; }
+	if (!playState->isWall(aux)) { dir = nextDir; }
 }

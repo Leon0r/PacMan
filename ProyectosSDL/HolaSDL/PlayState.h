@@ -12,6 +12,7 @@ class PlayState :
 	public GameState
 {
 private:
+	list <GameObject*>::iterator it;
 
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
@@ -34,9 +35,22 @@ public:
 	void saveToFile();
 
 	// Permite hacerlo porque la declaracion del struct 'par' esta en pacmanObject.h fuera de las clases, 
-	//por lo que se puede utilizar desde cualquier sitio que incluya a PacmanObject.h o alguna clase que herede de el
+	// por lo que se puede utilizar desde cualquier sitio que incluya a PacmanObject.h o alguna clase que herede de el
 
-	par getNextPosToroide(const par pos, const par dir); // devuelve la sig posicion del toroide en la direccion 'dir'
-	bool hayMuro(const par pos); // true si la posicion 'pos' hay muro
+	// Devuelve la sig posicion del toroide en la direccion 'dir'
+	par getNextPosToroide(const par pos, const par dir); 
+	// Devuelve true si las posición 'pos' hay muro
+	bool isWall(const par pos);
+	// Comprueba si hay un fantasma el la posAct del Pacman
+	bool isGhost();
+	// Devuelve true si hay comida o vitamina en esa posición
+	bool isEatable(const par pos, int& type);
+	// Cambia la casilla vacias y resta comida
+	void wasEaten(const par pos);
+	// Determina el efecto de la colisión
+	void collisionHandler();
+	// Comprueba si has ganado
+	bool winLevel() { return (map->getNumMaxFood() <= 0); };
+
 };
 

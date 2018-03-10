@@ -7,25 +7,27 @@ class GameMap :
 {
 private:
 	unsigned int numRowMap,
-				 numColMap,
-				 numMaxFood = 0;
+		numColMap,
+		numMaxFood = 0;
 
 	//Tipos de celda del mapa de juego
-	enum MapCell {Empty, Wall, Food, Vitamin};
+	enum MapCell { Empty, Wall, Food, Vitamin };
 	MapCell** map; // Matriz de punteros
 
 public:
 	GameMap(PlayState* playState, Textures* texture);
 	~GameMap();
-	
+
 	void update();
 	// Pinta el mapa en pantalla (renderCopy de las celdas)
 	void render();
 	bool handleEvent(SDL_Event& event);
-	// Lee lo necesario del archivo level para cargar el mapa
-	void loadFromFile(ifstream& level);
 	// Rellena una celda con el tipo type
 	void fillCell(int row, int col, int type);
+	// Resta uno al total de comida en el nivel
+	void lessFood() { numMaxFood--; }
+	// Lee lo necesario del archivo level para cargar el mapa
+	void loadFromFile(ifstream& level);
 	// Escribe los datos del mapa en el archivo level (solo los datos del mapa)
 	void saveToFile(ofstream& level);
 
@@ -38,4 +40,3 @@ public:
 	// Devuelve el numero de columnas
 	int getNumCols() { return numColMap; }
 };
-

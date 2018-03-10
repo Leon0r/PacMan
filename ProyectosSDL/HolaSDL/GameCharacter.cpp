@@ -16,7 +16,7 @@ GameCharacter::~GameCharacter()
 void GameCharacter::update() {
 	par aux = playState->getNextPosToroide(posAct, dir);
 
-	if(!playState->hayMuro(aux))
+	if(!playState->isWall(aux))
 		posAct = aux;
 }
 
@@ -52,4 +52,11 @@ void GameCharacter::saveToFile(ofstream& level)
 	level << posAct.x << " " << posAct.y << " "
 		<< posIni.x << " " << posIni.y << " "
 		<< dir.x << " " << dir.y;
+}
+
+// Devuelve a su posIni al personaje
+void GameCharacter::death()
+{
+	posAct.x = posIni.x;
+	posAct.y = posIni.y;
 }

@@ -38,7 +38,7 @@ void Ghost::possibleDirs() {
 
 	while (i < numDirs) {
 		par aux = playState->getNextPosToroide(posAct, directions[i]);
-		if (playState->hayMuro(aux)) {
+		if (playState->isWall(aux)) {
 			swap(directions[i], directions[numDirs - 1]);//intercambia 2 pares (el swap() de std de c++)
 			numDirs--;
 		}

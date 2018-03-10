@@ -26,4 +26,8 @@ public:
 	virtual void loadFromFile(ifstream& level);
 	// Escribe posAct, posIni, dir del GameCharacter
 	virtual void saveToFile(ofstream& level);
+
+	// Devuelve a su posIni al personaje
+	virtual void death();
+	virtual par getPosAct() { return posAct; }
 };

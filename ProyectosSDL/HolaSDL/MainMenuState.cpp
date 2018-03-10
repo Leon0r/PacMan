@@ -25,7 +25,6 @@ bool MainMenuState::handleEvent(SDL_Event& event) {
 }
 
 void MainMenuState::loadNewGame(Game* game) {
-	cout << "coso";
 	game->loadNewPlayState();
 }
 

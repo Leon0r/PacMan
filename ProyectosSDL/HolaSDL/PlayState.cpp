@@ -1,7 +1,6 @@
 #include "PlayState.h"
 #include "Game.h"
 
-
 PlayState::PlayState(Game* game, char* level) : GameState(game)
 {	
 	loadGame(level);
@@ -73,11 +72,12 @@ void PlayState::loadGame(string level)
 	file.close();
 }
 
-void PlayState::saveToFile() {
+void PlayState::saveToFile() 
+{
 
 }
 
-// devuelve la sig posicion del toroide en la direccion 'dir'
+// Devuelve la sig posicion del toroide en la direccion 'dir'
 par PlayState::getNextPosToroide(const par pos, const par dir) {
 	par aux;
 	aux.x = pos.x;
@@ -94,7 +94,48 @@ par PlayState::getNextPosToroide(const par pos, const par dir) {
 	return aux;
 }
 
-bool PlayState::hayMuro(const par pos) { return(map->getCellType(pos.y, pos.x) == 1); }
+// Devuelve true si las posición 'pos' hay muro
+bool PlayState::isWall(const par pos) 
+{
+	return(map->getCellType(pos.y, pos.x) == 1); 
+}
+
+// Comprueba si hay un fantasma el la posAct del Pacman
+bool PlayState::isGhost()
+{
+	it = objects.begin();
+	it++; it++;
+
+	while ((it != objects.end()) &&
+		(pacman->getPosAct().x != dynamic_cast<GameCharacter*>(*it)->getPosAct().x
+		|| pacman->getPosAct().y != dynamic_cast<GameCharacter*>(*it)->getPosAct().y))
+		it++;
+
+	return (!(it == objects.end()));
+}
+
+// Devuelve true si hay comida o vitamina en esa posición
+bool PlayState::isEatable(const par pos, int& type)
+{
+	type = map->getCellType(pos.y, pos.x);
+	return(type == 2 || type == 3);
+}
+
+// Cambia la casilla vacias y resta comida
+void PlayState::wasEaten(const par pos)
+{
+	map->fillCell(pos.y, pos.x, 0);
+	map->lessFood();
+}
+
+// Determina el efecto de la colisión
+void PlayState::collisionHandler()
+{
+	if (pacman->hasVitamin())
+		dynamic_cast<GameCharacter*>(*it)->death();
+	else
+		pacman->death();
+}
 
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide
 unsigned int PlayState::Right(const int posX)

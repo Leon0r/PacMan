@@ -1,10 +1,10 @@
 #include "GameMap.h"
 #include "PlayState.h"
 
-
-
 GameMap::GameMap(PlayState* playState, Textures* texture) : PacManObject(playState, texture)
-{}
+{
+	
+}
 
 
 GameMap::~GameMap()
@@ -15,6 +15,7 @@ GameMap::~GameMap()
 // Pinta el mapa en pantalla (renderCopy de las celdas)
 void GameMap::update()
 {
+
 }
 
 void GameMap::render()
@@ -36,6 +37,14 @@ bool GameMap::handleEvent(SDL_Event& event)
 	return true;
 }
 
+// Rellena una celda con el tipo type
+void GameMap::fillCell(int row, int col, int type) 
+{
+	// El casting para convertir de int a MapCell 
+	// (0 = empty, 1 = wall, 2 = food, 3 = vitamin)
+	map[row][col] = static_cast<MapCell>(type);
+}
+
 // Lee lo necesario del archivo level para cargar el mapa
 void GameMap::loadFromFile(ifstream& level)
 {
@@ -51,9 +60,9 @@ void GameMap::loadFromFile(ifstream& level)
 		map[i] = new MapCell[numColMap];
 
 	// Asigna el tipo que le corresponde a cada celda 
-	for (int i = 0; i < numRowMap; i++) 
+	for (int i = 0; i < numRowMap; i++)
 	{
-		for (int j = 0; j < numColMap; j++) 
+		for (int j = 0; j < numColMap; j++)
 		{
 			level >> type;
 			fillCell(i, j, type);
@@ -61,15 +70,6 @@ void GameMap::loadFromFile(ifstream& level)
 				numMaxFood++;
 		}
 	}
-}
-
-
-// Rellena una celda con el tipo type
-void GameMap::fillCell(int row, int col, int type) 
-{
-	// El casting para convertir de int a MapCell 
-	// (0 = empty, 1 = wall, 2 = food, 3 = vitamin)
-	map[row][col] = static_cast<MapCell>(type);
 }
 
 // Escribe los datos del mapa en el archivo level (solo los datos del mapa)

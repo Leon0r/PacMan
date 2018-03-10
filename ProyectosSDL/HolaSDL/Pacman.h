@@ -21,6 +21,12 @@ public:
 
 	void update();
 	bool handleEvent(SDL_Event& event);
+	// Come comida y vitaminas
+	void eatFood();
+	// Comprueba si tiene vitamina
+	bool hasVitamin() { return (energy > 0); }
+	// Le resta vida al pacman
+	void death();
 	// Lee lo necesario del archivo para cargar el Pacman
 	void loadFromFile(ifstream& level);
 	// Guarda en un archivo la información del Pacman
