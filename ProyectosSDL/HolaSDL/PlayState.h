@@ -26,7 +26,7 @@ private:
 
 public:
 	PlayState(Game* game, char* level);
-	~PlayState();
+	virtual ~PlayState() {}
 
 	void update();
 	void render();
@@ -51,6 +51,9 @@ public:
 	void collisionHandler();
 	// Comprueba si has ganado
 	bool winLevel() { return (map->getNumMaxFood() <= 0); };
-
+	// Pasa al estado EndState al morir
+	void endGame();
+	// Escribe en consola los puntos y las vidas de Pacman
+	void consoleHUD();
 };
 

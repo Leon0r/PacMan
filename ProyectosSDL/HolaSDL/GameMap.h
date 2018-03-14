@@ -16,9 +16,8 @@ private:
 
 public:
 	GameMap(PlayState* playState, Textures* texture);
-	~GameMap();
+	virtual ~GameMap();
 
-	void update();
 	// Pinta el mapa en pantalla (renderCopy de las celdas)
 	void render();
 	bool handleEvent(SDL_Event& event);

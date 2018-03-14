@@ -2,7 +2,7 @@
 #include "checkML.h"
 #include "GameCharacter.h"
 
-const int ENERGY_VIT = 200; // Tiempo que actúa la vitamina
+const int ENERGY_VIT = 50; // Tiempo que actúa la vitamina
 class Pacman :
 	public GameCharacter
 {
@@ -17,7 +17,7 @@ private:
 
 public:
 	Pacman(PlayState* playState, Textures* textures);
-	~Pacman();
+	virtual ~Pacman();
 
 	void update();
 	bool handleEvent(SDL_Event& event);
@@ -31,5 +31,8 @@ public:
 	void loadFromFile(ifstream& level);
 	// Guarda en un archivo la información del Pacman
 	void saveToFile(ofstream& level);
+
+	int getPoints() { return points; }
+	int getLifes() { return lifes; }
 };
 

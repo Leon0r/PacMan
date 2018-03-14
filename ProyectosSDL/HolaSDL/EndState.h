@@ -7,9 +7,8 @@ class EndState :
 {
 public:
 	EndState(Game* game);
-	~EndState();
+	virtual ~EndState(){}
 
-	void update();
-	void render();
-	bool handleEvent(SDL_Event& event);
+	static void loadMenuState(Game* game);
+	static void exitGame(Game* game);
 };

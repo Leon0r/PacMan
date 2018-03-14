@@ -14,7 +14,7 @@ protected:
 
 public:
 	MenuButton(Textures* texture, int x, int y, int h, int w, CallBackOnClick* cbOnClick, Game* game);
-	~MenuButton();
+	virtual ~MenuButton();
 
 	void update();
 	void render();

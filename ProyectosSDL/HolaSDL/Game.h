@@ -65,5 +65,7 @@ public:
 	void loadNewPlayState();
 	void loadSavedPlayState();
 	void loadPauseState();
+	void loadEndState();
+	void loadMainMenuState();
 	void exitGame();
 };

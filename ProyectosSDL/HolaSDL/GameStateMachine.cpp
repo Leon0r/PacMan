@@ -25,5 +25,6 @@ void GameStateMachine::pushState(GameState* state)
 
 void GameStateMachine::popState()
 {
+	/// delete states.top();
 	states.pop();
 }

@@ -13,11 +13,6 @@ GameMap::~GameMap()
 }
 
 // Pinta el mapa en pantalla (renderCopy de las celdas)
-void GameMap::update()
-{
-
-}
-
 void GameMap::render()
 {
 	int aux;

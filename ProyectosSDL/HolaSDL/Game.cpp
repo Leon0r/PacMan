@@ -96,7 +96,18 @@ void Game::loadPauseState() {
 	gameStateMachine->pushState(new PauseState(this));
 }
 
+void Game::loadEndState() {
+	gameStateMachine->pushState(new EndState(this));
+}
+
+void Game::loadMainMenuState()
+{
+	while (getStateMachine()->getSize() > 0 && dynamic_cast<MainMenuState*>(getStateMachine()->currentState()) == nullptr)
+		getStateMachine()->popState();
+}
+
 void Game::exitGame() {
 	endGame = true;
-	getStateMachine()->popState();
+	while (getStateMachine()->getSize() > 0)
+		getStateMachine()->popState();
 }

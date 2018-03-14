@@ -7,11 +7,7 @@ class MainMenuState :
 {
 public:
 	MainMenuState(Game* game);
-	~MainMenuState();
-
-	void update();
-	void render();
-	bool handleEvent(SDL_Event& event);
+	virtual ~MainMenuState() {}
 
 	static void loadNewGame(Game* game);
 	static void loadSavedGame(Game* game);

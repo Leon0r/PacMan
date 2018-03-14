@@ -6,12 +6,7 @@ PauseState::PauseState(Game* game) : GameState(game)
 {
 	objects.push_back(new MenuButton(game->getTexture(4), 100, 300, 50, 120, resume, game));
 	objects.push_back(new MenuButton(game->getTexture(3), 300, 300, 50, 120, exitGame, game));
-	//objects.push_back(new MenuButton(game->getTexture(4), 100, 300, 20, 50, goToMenu, game));
-}
-
-PauseState::~PauseState()
-{
-
+	objects.push_back(new MenuButton(game->getTexture(1), 200, 500, 50, 120, loadMenuState, game));
 }
 
 bool PauseState::handleEvent(SDL_Event& event) 
@@ -28,7 +23,7 @@ void PauseState::exitGame(Game* game) {
 	game->exitGame();
 }
 
-void PauseState::goToMenu(Game* game) {
-	game->getStateMachine()->popState();
-	game->getStateMachine()->popState();
+void PauseState::loadMenuState(Game* game)
+{
+	game->loadMainMenuState();
 }

@@ -10,7 +10,7 @@ private:
 
 public:
 	SmartGhost(PlayState* playState, Textures* textures);
-	~SmartGhost();
+	virtual ~SmartGhost();
 
 	void update();
 	bool handleEvent(SDL_Event& event);

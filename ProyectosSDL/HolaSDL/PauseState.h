@@ -7,10 +7,10 @@ class PauseState :
 {
 public:
 	PauseState(Game* game);
-	~PauseState();
+	virtual ~PauseState() {}
 
 	bool handleEvent(SDL_Event& event);
 	static void resume(Game* game);
 	static void exitGame(Game* game);
-	static void goToMenu(Game* game);
+	static void loadMenuState(Game* game);
 };

@@ -6,11 +6,6 @@ PlayState::PlayState(Game* game, char* level) : GameState(game)
 	loadGame(level);
 }
 
-PlayState::~PlayState()
-{
-	
-}
-
 void PlayState::update() {
 	startTime = SDL_GetTicks();
 
@@ -27,6 +22,7 @@ void PlayState::render() {
 	// Como el pacman esta delante del mapa en la lista, 
 	//se pinta por debajo del mapa y no se ve
 	pacman->render(); 
+	consoleHUD();
 }
 
 bool PlayState::handleEvent(SDL_Event & event)
@@ -135,6 +131,21 @@ void PlayState::collisionHandler()
 		dynamic_cast<GameCharacter*>(*it)->death();
 	else
 		pacman->death();
+}
+
+// Pasa al estado EndState al morir
+void PlayState::endGame()
+{
+	game->loadEndState();
+}
+
+void PlayState::consoleHUD()
+{
+	system("cls");
+	cout << "Lifes: " << pacman->getLifes() << endl;
+	cout << "Points: " << pacman->getPoints() << endl;
+	/// DEBUG
+	cout << "Has Vitamin? " << pacman->hasVitamin() << endl;
 }
 
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide

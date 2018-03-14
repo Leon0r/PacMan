@@ -21,4 +21,5 @@ public:
 	void pushState(GameState* state);
 	void popState();
 
+	size_t getSize() { return states.size(); }
 };

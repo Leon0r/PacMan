@@ -7,4 +7,5 @@ GameObject::GameObject(Textures* texture)
 
 GameObject::~GameObject()
 {
+	delete this;
 }

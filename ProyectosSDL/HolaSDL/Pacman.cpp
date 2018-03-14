@@ -20,6 +20,9 @@ void Pacman::update()
 	if (playState->isGhost())
 		playState->collisionHandler();
 	eatFood();
+
+	if (hasVitamin())
+		energy--;
 }
 
 bool Pacman::handleEvent(SDL_Event& event) 
@@ -58,7 +61,6 @@ void Pacman::eatFood()
 		points++;
 		playState->wasEaten(posAct);
 	}
-
 } 
 
 void Pacman::death()
@@ -68,8 +70,8 @@ void Pacman::death()
 		lifes--;
 		GameCharacter::death();
 	}
-	else /// MUERTE SUPREMA
-		;
+	else
+		playState->endGame();
 }
 
 // Lee lo necesario del archivo para cargar el Pacman
