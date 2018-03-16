@@ -40,7 +40,9 @@ public:
 	// por lo que se puede utilizar desde cualquier sitio que incluya a PacmanObject.h o alguna clase que herede de el
 
 	// Devuelve la sig posicion del toroide en la direccion 'dir'
-	par getNextPosToroide(const par pos, const par dir); 
+	par getNextPosToroide(const par pos, const par dir);
+
+	par getPacmanPos() { return pacman->getPosAct(); }
 	// Devuelve true si las posición 'pos' hay muro
 	bool isWall(const par pos);
 	// Comprueba si hay un fantasma el la posAct del Pacman
