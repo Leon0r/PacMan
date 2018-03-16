@@ -22,6 +22,12 @@ void GameMap::render()
 			destRect.y = cellSize * i;
 			destRect.x = cellSize * j;
 			aux = static_cast<int>(map[i][j]); // Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
+			
+			if (aux > 3) {
+				string msg = "Mapa con formato incorrecto, casilla inexistente " + to_string(aux);
+				throw FileFormatError(msg);
+			}
+
 			texture->renderFrame(destRect, aux, 0);
 		}
 	}
@@ -35,6 +41,11 @@ bool GameMap::handleEvent(SDL_Event& event)
 // Rellena una celda con el tipo type
 void GameMap::fillCell(int row, int col, int type) 
 {
+	if (type > 3 || type < 0) {
+		string msg = "Casilla de tipo " + to_string(type);
+		msg += " no existe, cambiando a celda vacia.";
+		throw FileFormatError(msg);
+	}
 	// El casting para convertir de int a MapCell 
 	// (0 = empty, 1 = wall, 2 = food, 3 = vitamin)
 	map[row][col] = static_cast<MapCell>(type);
@@ -60,7 +71,13 @@ void GameMap::loadFromFile(ifstream& level)
 		for (int j = 0; j < numColMap; j++)
 		{
 			level >> type;
-			fillCell(i, j, type);
+			try {
+				fillCell(i, j, type);
+			}
+			catch (FileFormatError e) {
+				cout << e.what();
+				fillCell(i, j, 0); // si no reconoce el tipo, lo pasa a empty
+			}
 			if (type >= 2)
 				numMaxFood++;
 		}

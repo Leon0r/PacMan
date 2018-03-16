@@ -4,6 +4,9 @@
 #include "SDL_image.h"
 #include "Textures.h"
 
+#include"FileFormatError.h"
+#include "SDLError.h"
+
 class GameObject
 {
 protected:

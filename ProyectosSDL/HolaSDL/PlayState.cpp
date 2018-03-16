@@ -13,8 +13,11 @@ PlayState::PlayState(Game* game, int level) : GameState(game), level_(level)
 
 	try {
 		loadGame(fileName, true);
-	}catch(FileNotFoundError){
-		cout << "nivel " << level << " no existe";
+	}catch(FileNotFoundError e){
+		cout << e.what() << endl;
+		cout << "iniciando nvl 1";
+		fileName = "..\\levels\\level01.pac";
+		loadGame(fileName, true);
 	}
 }
 

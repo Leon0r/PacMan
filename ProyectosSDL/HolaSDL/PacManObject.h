@@ -1,7 +1,8 @@
 #pragma once
+#include <fstream> // Para escritura y lectura
 #include "checkML.h"
 #include "GameObject.h"
-#include <fstream> // Para escritura y lectura
+#include "PacmanError.h"
 using namespace std;
 
 class PlayState;

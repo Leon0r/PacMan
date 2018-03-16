@@ -83,8 +83,9 @@ void Game::loadSavedPlayState() {
 	try {
 		gameStateMachine->pushState(new PlayState(this));
 	}
-	catch (FileNotFoundError) {
-		cout << "Partida no encontrada, generando nueva partida";
+	catch (FileNotFoundError e) {
+		cout << e.what() << endl;
+		cout << "Iniciando nueva partida";
 		gameStateMachine->pushState(new PlayState(this,1));
 	}
 }
