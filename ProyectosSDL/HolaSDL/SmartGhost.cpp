@@ -29,6 +29,28 @@ bool SmartGhost::handleEvent(SDL_Event& event)
 	return true;
 }
 
+void SmartGhost::fillNewSmartGhost(SmartGhost* ghost)
+{
+	ghost->age = 0;
+	par aux;
+	int p = rand() % numDirs;
+	///REVISAR
+	aux = directions[p] + posAct;
+	//la posicion libre
+	ghost->posAct.x = aux.x;
+	ghost->posAct.y = aux.y;
+	ghost->posIni.x = ghost->posAct.x;
+	ghost->posIni.y = ghost->posAct.y;
+}
+
+void SmartGhost::giveBirth()
+{
+	SmartGhost* ghost = new SmartGhost(playState, texture);
+	fillNewSmartGhost(ghost);
+
+	//playState->newSmartGhost(ghost);  ///hacer metodo en playState
+}
+
 void SmartGhost::selectDir()
 {
 	targetPos = playState->getPacmanPos();

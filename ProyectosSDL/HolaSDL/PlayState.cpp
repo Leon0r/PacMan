@@ -170,12 +170,17 @@ bool PlayState::isWall(const par pos)
 // Comprueba si hay un fantasma el la posAct del Pacman
 bool PlayState::isGhost()
 {
+	return isGhost(pacman->getPosAct());
+}
+
+bool PlayState::isGhost(par pos)
+{
 	it = objects.begin();
 	it++; it++;
 
 	while ((it != objects.end()) &&
-		(pacman->getPosAct().x != dynamic_cast<GameCharacter*>(*it)->getPosAct().x
-		|| pacman->getPosAct().y != dynamic_cast<GameCharacter*>(*it)->getPosAct().y))
+		(pos.x != dynamic_cast<GameCharacter*>(*it)->getPosAct().x
+			|| pos.y != dynamic_cast<GameCharacter*>(*it)->getPosAct().y))
 		it++;
 
 	return (!(it == objects.end()));

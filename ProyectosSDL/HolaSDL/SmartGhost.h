@@ -15,6 +15,8 @@ protected:
 	bool dead = false;
 	par targetPos;
 
+	virtual void fillNewSmartGhost(SmartGhost* ghost);
+	virtual void giveBirth();
 	virtual void selectDir();
 	virtual void dieOld();
 

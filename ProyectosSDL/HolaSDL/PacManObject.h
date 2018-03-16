@@ -12,6 +12,14 @@ struct par
 {
 	int x;
 	int y;
+	par operator+(par a){
+		par b = { x + a.x , y + a.y };
+		return (b);
+	}
+	par operator=(par a) {
+		par b = { a.x , a.y };
+		return (b);
+	}
 };
 
 const int cellSize = 20; // Tamaño de las celdas (todas iguales)

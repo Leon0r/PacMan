@@ -47,6 +47,8 @@ public:
 	bool isWall(const par pos);
 	// Comprueba si hay un fantasma el la posAct del Pacman
 	bool isGhost();
+	// Comprueba si hay un fantasma el la posicion pos
+	bool isGhost(par pos);
 	// Devuelve true si hay comida o vitamina en esa posición
 	bool isEatable(const par pos, int& type);
 	// Cambia la casilla vacias y resta comida
