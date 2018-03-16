@@ -58,6 +58,8 @@ public:
 	bool isSmartGhost(par pos);
 	// Devuelve true si hay comida o vitamina en esa posición
 	bool isEatable(const par pos, int& type);
+	// Devuelve true si se puede comer el smartGhost por estar muerto
+	bool isSmartGhostEatable(par pos);
 	// Cambia la casilla vacias y resta comida
 	void wasEaten(const par pos);
 	// Determina el efecto de la colisión

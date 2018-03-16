@@ -216,6 +216,12 @@ bool PlayState::isEatable(const par pos, int& type)
 	return(type == 2 || type == 3 );
 }
 
+// Devuelve true si se puede comer el smartGhost por estar muerto
+bool PlayState::isSmartGhostEatable(par pos)
+{
+	return (isSmartGhost(pos) && static_cast<SmartGhost*>(*it)->isDead());
+}
+
 // Cambia la casilla vacias y resta comida
 void PlayState::wasEaten(const par pos)
 {
