@@ -188,6 +188,22 @@ bool PlayState::isGhost(par pos)
 	return (!(it == objects.end()));
 }
 
+bool PlayState::isSmartGhost(par pos)
+{
+	it = objects.begin();
+	it++; it++;
+	SmartGhost* sg = dynamic_cast<SmartGhost*>(*it);
+
+	while ((it != objects.end()) && sg != nullptr && 
+		(sg->isAdult() && !sg->isDead()) &&
+		(pos.x != sg->getPosAct().x || pos.y != sg->getPosAct().y)) {
+		it++;
+		sg = dynamic_cast<SmartGhost*>(*it);
+	}
+
+	return (!(it == objects.end()));
+}
+
 // Devuelve true si hay comida o vitamina en esa posición
 bool PlayState::isEatable(const par pos, int& type)
 {
@@ -227,10 +243,10 @@ void PlayState::consoleHUD()
 	cout << "Has Vitamin? " << pacman->hasVitamin() << endl;
 }
 
+// Añade un SmartGhost a la lista de GameObjects
 void PlayState::newSmartGhost(SmartGhost * ghost)
 {
 	objects.push_back(ghost);
-	// objects.back()->render();
 }
 
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide

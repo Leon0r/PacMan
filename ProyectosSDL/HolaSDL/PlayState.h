@@ -52,6 +52,8 @@ public:
 	bool isGhost();
 	// Comprueba si hay un fantasma el la posicion pos
 	bool isGhost(par pos);
+	// Comprueba si hay un SmartGhost el la posicion pos
+	bool isSmartGhost(par pos);
 	// Devuelve true si hay comida o vitamina en esa posición
 	bool isEatable(const par pos, int& type);
 	// Cambia la casilla vacias y resta comida

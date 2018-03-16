@@ -2,7 +2,7 @@
 #include "Ghost.h"
 #include "checkML.h"
 
-const int ADUL_AGE = 40;
+const int ADULT_AGE = 40;
 const int DEATH_AGE = 200;
 const int TIME_SALIDA = 30;
 
@@ -21,6 +21,7 @@ protected:
 	virtual void giveBirth();
 	// Selecciona la direccion del movimiento
 	virtual void selectDir();
+	virtual void canGiveBirth();
 	// Desactiva completamente el SmartGhost
 	virtual void dieOld();
 
@@ -32,6 +33,7 @@ public:
 
 	// Devuelve el valor del booleano dead
 	bool isDead() { return dead; }
+	bool isAdult() { return(age > ADULT_AGE); }
 	// Reinicia timeExit y llama death
 	virtual void death() { timeExit = TIME_SALIDA; GameCharacter::death(); }
 	// Lee lo necesario del archivo para cargar el SmartGhost

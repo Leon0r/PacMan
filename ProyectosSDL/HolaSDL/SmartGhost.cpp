@@ -14,10 +14,11 @@ SmartGhost::~SmartGhost()
 void SmartGhost::update()
 {
 	timeExit--;
-	if (age < ADUL_AGE || timeExit > 0)
+	if (age < ADULT_AGE || timeExit > 0)
 		Ghost::update();
 	else if (age < DEATH_AGE) {
 		selectDir();
+		canGiveBirth();
 		GameCharacter::update();
 	}
 	else if (!dead)
@@ -78,6 +79,27 @@ void SmartGhost::selectDir()
 		}
 		dir.x = directions[dirAux].x;
 		dir.y = directions[dirAux].y;
+	}
+}
+
+void SmartGhost::canGiveBirth()
+{
+	if (!dead && age > ADULT_AGE) {
+		int i = 0;
+		par aux;
+		aux.x = posAct.x + directions[i].x;
+		aux.y = posAct.y + directions[i].y;
+
+		while (i < numDirs && playState->isSmartGhost(aux)) {
+			i++;
+			aux.x = posAct.x + directions[i].x;
+			aux.y = posAct.y + directions[i].y;
+		}
+
+		if (i < numDirs) {
+			int rnd = rand() % 3;
+			if (rnd == 0) giveBirth();
+		}
 	}
 }
 
