@@ -21,7 +21,7 @@ public:
 	virtual void update() {}
 	// Pinta el mapa en pantalla (renderCopy de las celdas)
 	void render();
-	bool handleEvent(SDL_Event& event);
+	bool handleEvent(SDL_Event& event) { return true; };
 	// Rellena una celda con el tipo type
 	void fillCell(int row, int col, int type);
 	// Resta uno al total de comida en el nivel

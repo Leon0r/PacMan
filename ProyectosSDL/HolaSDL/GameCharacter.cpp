@@ -35,6 +35,7 @@ bool GameCharacter::handleEvent(SDL_Event& event)
 	return true;
 }
 
+// Hace las animaciones de los personajes
 void GameCharacter::animate()
 {
 	if (dir.x == 1) // dcha

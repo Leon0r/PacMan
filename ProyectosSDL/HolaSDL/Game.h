@@ -31,7 +31,7 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de texturas
 
-									  // Tamaño y posición de la ventana
+	// Tamaño y posición de la ventana
 	int winX,
 		winY;
 

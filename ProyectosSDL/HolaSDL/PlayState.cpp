@@ -64,6 +64,7 @@ bool PlayState::handleEvent(SDL_Event & event)
 	return handled;
 }
 
+// newGame = true si es partida desde nivel limpio 
 void PlayState::loadGame(string fileName, bool newGame)
 {
 	int p;
@@ -117,6 +118,7 @@ void PlayState::loadGame(string fileName, bool newGame)
 	file.close();
 }
 
+// Guarda en un archivo la información del juego
 void PlayState::saveToFile() 
 {
 	string fileName, aux;
@@ -130,11 +132,11 @@ void PlayState::saveToFile()
 
 	map->saveToFile(file);
 
-	// el nº de fantasmas es los (obj - map - pacman)
+	// El numero de fantasmas es los (obj - map - pacman)
 	file << (objects.size() - 2) << endl; 
 
 	it = objects.begin();
-	it++; it++; // para saltar pacman y gameMap, que estan los primeros
+	it++; it++; // Para saltar pacman y gameMap, que estan los primeros
 
 	for (it; it != objects.end(); it++) {
 		dynamic_cast<PacManObject*>(*it)->saveToFile(file);

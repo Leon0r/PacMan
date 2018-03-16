@@ -24,18 +24,16 @@ void SmartGhost::update()
 		dieOld();
 }
 
-bool SmartGhost::handleEvent(SDL_Event& event)
-{
-	return true;
-}
-
+// Rellena los campos basicos de un SmartGhost
 void SmartGhost::fillNewSmartGhost(SmartGhost* ghost)
 {
 	ghost->age = 0;
 	par aux;
 	int p = rand() % numDirs;
-	///REVISAR
-	aux = directions[p] + posAct;
+
+	aux.x = directions[p].x + posAct.x;
+	aux.y = directions[p].y + posAct.y;
+
 	//la posicion libre
 	ghost->posAct.x = aux.x;
 	ghost->posAct.y = aux.y;
@@ -43,6 +41,7 @@ void SmartGhost::fillNewSmartGhost(SmartGhost* ghost)
 	ghost->posIni.y = ghost->posAct.y;
 }
 
+// Completa los datos de un SmartGhost y llama al PlayState para crearlo
 void SmartGhost::giveBirth()
 {
 	SmartGhost* ghost = new SmartGhost(playState, texture);
@@ -51,6 +50,7 @@ void SmartGhost::giveBirth()
 	playState->newSmartGhost(ghost);
 }
 
+// Selecciona la direccion del movimiento
 void SmartGhost::selectDir()
 {
 	targetPos = playState->getPacmanPos();
@@ -81,6 +81,7 @@ void SmartGhost::selectDir()
 	}
 }
 
+// Desactiva completamente el SmartGhost
 void SmartGhost::dieOld() {
 	dead = true;
 	dir = { 0,0 };

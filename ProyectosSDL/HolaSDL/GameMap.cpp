@@ -33,11 +33,6 @@ void GameMap::render()
 	}
 }
 
-bool GameMap::handleEvent(SDL_Event& event)
-{
-	return true;
-}
-
 // Rellena una celda con el tipo type
 void GameMap::fillCell(int row, int col, int type) 
 {

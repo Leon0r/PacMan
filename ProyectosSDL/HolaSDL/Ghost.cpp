@@ -19,7 +19,7 @@ void Ghost::update()
 	chooseRndDir();
 }
 
-// comprueba las dirs a las que puede ir el fantasma (de 0 a numDirs, reordenando el vector)
+// Comprueba las dirs a las que puede ir el fantasma (de 0 a numDirs, reordenando el vector)
 void Ghost::possibleDirs() {
 	numDirs = directions.size();
 	int i = 0;

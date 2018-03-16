@@ -25,7 +25,8 @@ public:
 	virtual void render();
 	virtual bool handleEvent(SDL_Event& event);
 
-	virtual void animate(); // hace las animaciones de los personajes
+	// Hace las animaciones de los personajes
+	virtual void animate(); 
 
 	// Lee lo necesario del archivo para cargar el GameCharacter
 	virtual void loadFromFile(ifstream& level);
@@ -34,5 +35,6 @@ public:
 
 	// Devuelve a su posIni al personaje
 	virtual void death();
+	// Devuelve la posicion actual del personaje
 	virtual par getPosAct() { return posAct; }
 };

@@ -15,9 +15,13 @@ protected:
 	bool dead = false;
 	par targetPos;
 
+	// Rellena los campos basicos de un SmartGhost
 	virtual void fillNewSmartGhost(SmartGhost* ghost);
+	// Completa los datos de un SmartGhost y llama al PlayState para crearlo
 	virtual void giveBirth();
+	// Selecciona la direccion del movimiento
 	virtual void selectDir();
+	// Desactiva completamente el SmartGhost
 	virtual void dieOld();
 
 public:
@@ -25,9 +29,10 @@ public:
 	virtual ~SmartGhost();
 
 	void update();
-	bool handleEvent(SDL_Event& event);
 
+	// Devuelve el valor del booleano dead
 	bool isDead() { return dead; }
+	// Reinicia timeExit y llama death
 	virtual void death() { timeExit = TIME_SALIDA; GameCharacter::death(); }
 	// Lee lo necesario del archivo para cargar el SmartGhost
 	void loadFromFile(ifstream& level);
