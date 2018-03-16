@@ -95,6 +95,7 @@ void PlayState::loadGame(string fileName, bool newGame)
 				else if (typeGhost == 1) {
 					objects.push_back(new SmartGhost(this, game->getTexture(6)));
 					dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+					numSmartGhosts++;
 				}
 				else
 					throw FileFormatError("Tipo de fantasma incorrecto");
@@ -175,6 +176,7 @@ bool PlayState::isGhost()
 	return isGhost(pacman->getPosAct());
 }
 
+// Comprueba si hay un fantasma el la posicion pos
 bool PlayState::isGhost(par pos)
 {
 	it = objects.begin();
@@ -188,6 +190,7 @@ bool PlayState::isGhost(par pos)
 	return (!(it == objects.end()));
 }
 
+// Comprueba si hay un SmartGhost el la posicion pos
 bool PlayState::isSmartGhost(par pos)
 {
 	it = objects.begin();
@@ -210,7 +213,7 @@ bool PlayState::isSmartGhost(par pos)
 bool PlayState::isEatable(const par pos, int& type)
 {
 	type = map->getCellType(pos.y, pos.x);
-	return(type == 2 || type == 3);
+	return(type == 2 || type == 3 );
 }
 
 // Cambia la casilla vacias y resta comida
@@ -235,7 +238,7 @@ void PlayState::endGame()
 	game->loadEndState();
 }
 
-
+// Escribe en consola los puntos y las vidas de Pacman
 void PlayState::consoleHUD()
 {
 	system("cls");
@@ -249,6 +252,7 @@ void PlayState::consoleHUD()
 void PlayState::newSmartGhost(SmartGhost * ghost)
 {
 	objects.push_back(ghost);
+	numSmartGhosts++;
 }
 
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide

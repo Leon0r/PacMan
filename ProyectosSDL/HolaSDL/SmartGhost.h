@@ -21,6 +21,7 @@ protected:
 	virtual void giveBirth();
 	// Selecciona la direccion del movimiento
 	virtual void selectDir();
+	// Comprueba las condiciones para que sea posible tener hijos
 	virtual void canGiveBirth();
 	// Desactiva completamente el SmartGhost
 	virtual void dieOld();
@@ -33,6 +34,7 @@ public:
 
 	// Devuelve el valor del booleano dead
 	bool isDead() { return dead; }
+	// Comprueba si es adulto
 	bool isAdult() { return(age > ADULT_AGE); }
 	// Reinicia timeExit y llama death
 	virtual void death() { timeExit = TIME_SALIDA; GameCharacter::death(); }

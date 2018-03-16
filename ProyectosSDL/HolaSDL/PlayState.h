@@ -7,6 +7,7 @@
 #include "SmartGhost.h"
 
 const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
+const int MAX_SMART_GHOSTS = 5;
 
 class PlayState :
 	public GameState
@@ -14,6 +15,7 @@ class PlayState :
 private:
 	list <GameObject*>::iterator it;
 	int level_;
+	int numSmartGhosts = 0;
 
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
@@ -68,5 +70,9 @@ public:
 	void consoleHUD();
 	// Añade un SmartGhost a la lista de GameObjects
 	void newSmartGhost(SmartGhost* ghost);
+	// Resta al total de SmartGhosts en pantalla
+	void dismissDeathSG() { numSmartGhosts--; }
+	// Devuelve el numero de SmartGhosts en pantalla
+	int getNumSG() { return numSmartGhosts; }
 };
 

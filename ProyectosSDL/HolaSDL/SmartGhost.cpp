@@ -84,9 +84,10 @@ void SmartGhost::selectDir()
 	}
 }
 
+// Comprueba las condiciones para que sea posible tener hijos
 void SmartGhost::canGiveBirth()
 {
-	if (!dead && age > ADULT_AGE) {
+	if (!dead && age > ADULT_AGE && playState->getNumSG() < MAX_SMART_GHOSTS) {
 		int i = 0;
 		par aux;
 		aux.x = posAct.x + directions[i].x;
@@ -99,8 +100,6 @@ void SmartGhost::canGiveBirth()
 		}
 
 		if (i < numDirs) {
-			//int rnd = rand() % 3;
-			//if (rnd == 0) 
 			giveBirth();
 		}
 	}
@@ -110,6 +109,7 @@ void SmartGhost::canGiveBirth()
 void SmartGhost::dieOld() {
 	dead = true;
 	dir = { 0,0 };
+	playState->dismissDeathSG();
 }
 
 // Lee lo necesario del archivo para cargar el SmartGhost
