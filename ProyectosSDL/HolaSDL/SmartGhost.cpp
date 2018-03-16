@@ -13,7 +13,9 @@ SmartGhost::~SmartGhost()
 
 void SmartGhost::update()
 {
-	timeExit--;
+	if(timeExit>=0)	timeExit--;
+	if (age < DEATH_AGE) age++;
+
 	if (age < ADULT_AGE || timeExit > 0)
 		Ghost::update();
 	else if (age < DEATH_AGE) {
@@ -97,8 +99,9 @@ void SmartGhost::canGiveBirth()
 		}
 
 		if (i < numDirs) {
-			int rnd = rand() % 3;
-			if (rnd == 0) giveBirth();
+			//int rnd = rand() % 3;
+			//if (rnd == 0) 
+			giveBirth();
 		}
 	}
 }

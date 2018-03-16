@@ -193,12 +193,14 @@ bool PlayState::isSmartGhost(par pos)
 	it = objects.begin();
 	it++; it++;
 	SmartGhost* sg = dynamic_cast<SmartGhost*>(*it);
-
-	while ((it != objects.end()) && sg != nullptr && 
-		(sg->isAdult() && !sg->isDead()) &&
+	
+	while ((it != objects.end()) && sg != nullptr &&
+		sg->isAdult() && !sg->isDead() &&
 		(pos.x != sg->getPosAct().x || pos.y != sg->getPosAct().y)) {
 		it++;
-		sg = dynamic_cast<SmartGhost*>(*it);
+
+		if(it != objects.end())
+			sg = dynamic_cast<SmartGhost*>(*it);
 	}
 
 	return (!(it == objects.end()));

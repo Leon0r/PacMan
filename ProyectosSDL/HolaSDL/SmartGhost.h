@@ -3,7 +3,7 @@
 #include "checkML.h"
 
 const int ADULT_AGE = 40;
-const int DEATH_AGE = 200;
+const int DEATH_AGE = 300;
 const int TIME_SALIDA = 30;
 
 class SmartGhost :
