@@ -71,8 +71,6 @@ void Game::load() {
 
 	gameStateMachine->pushState(new MainMenuState(this));
 
-	/// PRUEBAS CON OTROS ESTADOS Y SUS BOTONES, DEJAR SOLO EL MAIN MENU CUANDO FUNCIONE TODO
-	//gameStateMachine->pushState(new PauseState(this));
 }
 
 void Game::loadNewPlayState() {

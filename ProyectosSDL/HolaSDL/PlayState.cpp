@@ -85,14 +85,23 @@ void PlayState::loadGame(string fileName, bool newGame)
 		file >> numGhosts;
 
 		for (int i = 0; i < numGhosts; i++) {
-			file >> typeGhost;
-			if (typeGhost == 0) {
-				objects.push_back(new Ghost(this, game->getTexture(6)));
-				dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
+			try {
+				file >> typeGhost;
+				if (typeGhost == 0) {
+					objects.push_back(new Ghost(this, game->getTexture(6)));
+					dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
+				}
+				else if (typeGhost == 1) {
+					objects.push_back(new SmartGhost(this, game->getTexture(6)));
+					dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+				}
+				else
+					throw FileFormatError("Tipo de fantasma incorrecto");
 			}
-			else if (typeGhost == 1) {
-				objects.push_back(new SmartGhost(this, game->getTexture(6)));
-				dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+			catch (FileFormatError e) {
+				cout << e.what();
+				string s;
+				getline(file, s);
 			}
 		}
 
