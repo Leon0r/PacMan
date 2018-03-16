@@ -7,7 +7,7 @@ class Pacman :
 	public GameCharacter
 {
 private:
-	unsigned int points = 0,
+	unsigned int points_ = 0,
 				 energy = 0,
 				 lifes = 3;
 
@@ -32,7 +32,8 @@ public:
 	// Guarda en un archivo la información del Pacman
 	void saveToFile(ofstream& level);
 
-	int getPoints() { return points; }
+	void setPoints(int points) { points_ = points; }
+	int getPoints() { return points_; }	
 	int getLifes() { return lifes; }
 };
 

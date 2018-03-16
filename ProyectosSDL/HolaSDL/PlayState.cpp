@@ -1,9 +1,31 @@
 #include "PlayState.h"
 #include "Game.h"
 
-PlayState::PlayState(Game* game, char* level) : GameState(game)
-{	
-	loadGame(level);
+PlayState::PlayState(Game* game, int level) : GameState(game), level_(level)
+{
+	string fileName;
+	if (level / 10 != 0)
+		fileName = "..\\levels\\level" + to_string(level);
+	else
+		fileName = "..\\levels\\level0" + to_string(level);
+
+	fileName += ".pac";
+
+	try {
+		loadGame(fileName, true);
+	}catch(FileNotFoundError){
+		cout << "nivel " << level << " no existe";
+	}
+}
+
+PlayState::PlayState(Game * game):GameState(game)
+{
+	int name;
+	cin >> name;
+
+	string fileName = "..\\levels\\" + to_string(name);
+	fileName += ".pac";
+	loadGame(fileName, false);
 }
 
 void PlayState::update() {
@@ -29,8 +51,9 @@ bool PlayState::handleEvent(SDL_Event & event)
 {
 	bool handled = false;
 	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_p) {
-			game->loadPauseState();
-			handled = true;
+		saveToFile();
+		game->loadPauseState();
+		handled = true;
 	}
 	else {
 		handled = GameState::handleEvent(event);
@@ -38,39 +61,75 @@ bool PlayState::handleEvent(SDL_Event & event)
 	return handled;
 }
 
-void PlayState::loadGame(string level)
+void PlayState::loadGame(string fileName, bool newGame)
 {
-	ifstream file(level);
+	int p;
+	ifstream file;
+	file.open(fileName);
 
-	map = new GameMap(this, game->getTexture(5));
-	objects.push_front(map);
-	dynamic_cast<GameMap*>(objects.front())->loadFromFile(file);
+	if (!file.fail()) {
 
-	int numGhosts, typeGhost;
-	file >> numGhosts;
-
-	for (int i = 0; i < numGhosts; i++) {
-		file >> typeGhost;
-		if (typeGhost == 0) {
-			objects.push_back(new Ghost(this, game->getTexture(6)));
-			dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
+		if (!newGame) { // Si es partida cargada
+			file >> level_;
+			file >> p;
 		}
-		else if (typeGhost == 1) {
-			objects.push_back(new SmartGhost(this, game->getTexture(6)));
-			dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+
+		map = new GameMap(this, game->getTexture(5));
+		objects.push_front(map);
+		dynamic_cast<GameMap*>(objects.front())->loadFromFile(file);
+
+		int numGhosts, typeGhost;
+		file >> numGhosts;
+
+		for (int i = 0; i < numGhosts; i++) {
+			file >> typeGhost;
+			if (typeGhost == 0) {
+				objects.push_back(new Ghost(this, game->getTexture(6)));
+				dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
+			}
+			else if (typeGhost == 1) {
+				objects.push_back(new SmartGhost(this, game->getTexture(6)));
+				dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+			}
 		}
+
+		pacman = new Pacman(this, game->getTexture(6));
+		objects.push_front(pacman);
+		dynamic_cast<Pacman*>(objects.front())->loadFromFile(file);
+
+		if (!newGame)
+			pacman->setPoints(p);
 	}
-
-	pacman = new Pacman(this, game->getTexture(6));
-	objects.push_front(pacman);
-	dynamic_cast<Pacman*>(objects.front())->loadFromFile(file);
-
+	else
+		throw FileNotFoundError("archivo " + fileName + " no encontrado");
 	file.close();
 }
 
 void PlayState::saveToFile() 
 {
+	string fileName, aux;
+	fileName = "..\\levels\\";
+	cin >> aux;
+	fileName += aux;
+	fileName += ".pac";
 
+	ofstream file(fileName);
+	file << level_ << " " << pacman->getPoints() << endl;
+
+	map->saveToFile(file);
+
+	// el nº de fantasmas es los (obj - map - pacman)
+	file << (objects.size() - 2) << endl; 
+
+	it = objects.begin();
+	it++; it++; // para saltar pacman y gameMap, que estan los primeros
+
+	for (it; it != objects.end(); it++) {
+		dynamic_cast<PacManObject*>(*it)->saveToFile(file);
+		file << endl;
+	}
+	pacman->saveToFile(file);
+	file.close();
 }
 
 // Devuelve la sig posicion del toroide en la direccion 'dir'
@@ -138,7 +197,8 @@ void PlayState::endGame()
 {
 	game->loadEndState();
 }
-
+
+
 void PlayState::consoleHUD()
 {
 	system("cls");

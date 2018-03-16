@@ -20,7 +20,8 @@ Game::~Game()
 {
 	for (int i = 0; i < NUM_TEXTURES; i++)
 	{
-	}//delete textures[i];
+		delete textures[i];
+	}
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
@@ -75,21 +76,17 @@ void Game::load() {
 }
 
 void Game::loadNewPlayState() {
-	gameStateMachine->pushState(new PlayState(this, "..\\levels\\level01.pac"));
+	gameStateMachine->pushState(new PlayState(this, 1));
 }
 
 void Game::loadSavedPlayState() {
-	char* level;
-	level = "";
-
 	try {
-		cin >> level;
+		gameStateMachine->pushState(new PlayState(this));
 	}
-	catch (FileNotFoundError e){
-		cout << e.what();	
+	catch (FileNotFoundError) {
+		cout << "Partida no encontrada, generando nueva partida";
+		gameStateMachine->pushState(new PlayState(this,1));
 	}
-
-	gameStateMachine->pushState(new PlayState(this, level));
 }
 
 void Game::loadPauseState() {

@@ -58,7 +58,7 @@ void Pacman::eatFood()
 	{
 		if (playState->isEatable(posAct, type) && type == 3)
 			energy = ENERGY_VIT;
-		points++;
+		points_++;
 		playState->wasEaten(posAct);
 	}
 } 

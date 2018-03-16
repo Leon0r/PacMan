@@ -13,6 +13,7 @@ class PlayState :
 {
 private:
 	list <GameObject*>::iterator it;
+	int level_;
 
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
@@ -25,13 +26,14 @@ private:
 	unsigned int Down(const int posY);
 
 public:
-	PlayState(Game* game, char* level);
+	PlayState(Game* game, int level);
+	PlayState(Game* game);
 	virtual ~PlayState() {}
 
 	void update();
 	void render();
 	bool handleEvent(SDL_Event& event);
-	void loadGame(string level);
+	void loadGame(string fileName, bool newGame); // newGame = true si es partida desde nivel limpio 
 	void saveToFile();
 
 	// Permite hacerlo porque la declaracion del struct 'par' esta en pacmanObject.h fuera de las clases, 

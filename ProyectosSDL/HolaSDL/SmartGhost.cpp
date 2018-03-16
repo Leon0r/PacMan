@@ -32,6 +32,7 @@ void SmartGhost::loadFromFile(ifstream& level)
 // Guarda en un archivo la información del Pacman
 void SmartGhost::saveToFile(ofstream& level)
 {
+	level << "1 ";
 	GameCharacter::saveToFile(level);
 	level << " " << age;
 }
