@@ -1,12 +1,11 @@
 #include "SmartGhost.h"
 #include "PlayState.h" 
 
-
 SmartGhost::SmartGhost(PlayState* playState, Textures* texture) : Ghost(playState, texture)
 {
-	frame.x = 8;
+	frameOrigX_ = 8;
+	frame.x = frameOrigX_;
 }
-
 
 SmartGhost::~SmartGhost()
 {
@@ -14,12 +13,17 @@ SmartGhost::~SmartGhost()
 
 void SmartGhost::update() 
 {
-
+	selectDir();
+	GameCharacter::update();
 }
 
 bool SmartGhost::handleEvent(SDL_Event& event)
 {
 	return true;
+}
+
+void SmartGhost::selectDir()
+{
 }
 
 // Lee lo necesario del archivo para cargar el SmartGhost

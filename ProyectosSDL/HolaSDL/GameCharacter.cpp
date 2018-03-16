@@ -3,7 +3,8 @@
 
 GameCharacter::GameCharacter(PlayState* playState, Textures* texture, int frameX) : PacManObject(playState, texture)
 {
-	frame.x = frameX;
+	frameOrigX_ = frameX;
+	frame.x = frameOrigX_;
 	frame.y = 0;
 }
 
@@ -22,6 +23,7 @@ void GameCharacter::update() {
 
 void GameCharacter::render()
 {
+	animate();
 	destRect.x = destRect.w*posAct.x;
 	destRect.y = destRect.h*posAct.y;
 
@@ -31,6 +33,26 @@ void GameCharacter::render()
 bool GameCharacter::handleEvent(SDL_Event& event)
 {
 	return true;
+}
+
+void GameCharacter::animate()
+{
+	if (dir.x == 1) // dcha
+		frame.y = 0;
+	else if (dir.x == -1) //izqu
+		frame.y = 2;
+
+	if (dir.y == -1) // arriba
+		frame.y = 3;
+	else if (dir.y == 1) // abajo
+		frame.y = 1;
+
+	if (switchAnim)
+		frame.x = frameOrigX_;
+	else
+		frame.x = frameOrigX_ + 1;
+
+	switchAnim = !switchAnim;
 }
 
 // Lee lo necesario del archivo para cargar el GameCharacter

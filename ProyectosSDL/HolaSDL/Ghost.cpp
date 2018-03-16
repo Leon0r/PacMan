@@ -3,7 +3,9 @@
 
 Ghost::Ghost(PlayState* playState, Textures* texture) : GameCharacter(playState, texture, 0)
 {
-
+	int frameX = rand() % 4;
+	frameOrigX_ = frameX*2;
+	frame.x = frameOrigX_;
 }
 
 Ghost::~Ghost()
@@ -15,11 +17,6 @@ void Ghost::update()
 {
 	GameCharacter::update();
 	chooseRndDir();
-}
-
-bool Ghost::handleEvent(SDL_Event& event)
-{
-	return true;
 }
 
 // comprueba las dirs a las que puede ir el fantasma (de 0 a numDirs, reordenando el vector)

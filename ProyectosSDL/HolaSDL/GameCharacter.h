@@ -10,6 +10,8 @@ protected:
 		posAct, // Pos actual del character
 		dir;    // Direccion actual del character
 
+	bool switchAnim = false;
+	int frameOrigX_;
 	par frame;
 	/// Coordenadas en la textura del frame (esquina sup izquierda) concreto a renderizar
 	/// Como todos los personajes tienen las animaciones colocadas igual, 
@@ -22,6 +24,9 @@ public:
 	virtual void update();
 	virtual void render();
 	virtual bool handleEvent(SDL_Event& event);
+
+	virtual void animate(); // hace las animaciones de los personajes
+
 	// Lee lo necesario del archivo para cargar el GameCharacter
 	virtual void loadFromFile(ifstream& level);
 	// Escribe posAct, posIni, dir del GameCharacter

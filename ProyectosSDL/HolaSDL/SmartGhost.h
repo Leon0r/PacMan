@@ -5,8 +5,10 @@
 class SmartGhost :
 	public Ghost
 {
-private:
+protected:
 	unsigned int age;
+
+	virtual void selectDir();
 
 public:
 	SmartGhost(PlayState* playState, Textures* textures);

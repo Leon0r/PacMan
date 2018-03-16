@@ -15,6 +15,9 @@ private:
 
 	void changeDir();
 
+	bool anim = false;
+	virtual void animate();
+
 public:
 	Pacman(PlayState* playState, Textures* textures);
 	virtual ~Pacman();

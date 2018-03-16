@@ -95,3 +95,10 @@ void Pacman::changeDir(){
 
 	if (!playState->isWall(aux)) { dir = nextDir; }
 }
+
+void Pacman::animate()
+{
+	if (anim)
+		GameCharacter::animate();
+	anim = !anim;
+}

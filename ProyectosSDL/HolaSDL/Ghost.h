@@ -21,7 +21,6 @@ public:
 	virtual ~Ghost();
 
 	virtual void update();
-	virtual bool handleEvent(SDL_Event& event);
 	virtual void loadFromFile(ifstream& level) { GameCharacter::loadFromFile(level); }
 	virtual void saveToFile(ofstream& level) { level << "0 "; GameCharacter::saveToFile(level); }
 };
