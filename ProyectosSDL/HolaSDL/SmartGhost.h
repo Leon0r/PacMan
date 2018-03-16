@@ -3,7 +3,7 @@
 #include "checkML.h"
 
 const int ADULT_AGE = 40;
-const int DEATH_AGE = 300;
+const int DEATH_AGE = 50;
 const int TIME_SALIDA = 30;
 
 class SmartGhost :
@@ -20,7 +20,8 @@ protected:
 	// Completa los datos de un SmartGhost y llama al PlayState para crearlo
 	virtual void giveBirth();
 	// Selecciona la direccion del movimiento
-	virtual void selectDir();
+	virtual void selectNearestDir();
+	////////////////////AQUI VA OTRO
 	// Comprueba las condiciones para que sea posible tener hijos
 	virtual void canGiveBirth();
 	// Desactiva completamente el SmartGhost
@@ -29,7 +30,7 @@ protected:
 public:
 	SmartGhost(PlayState* playState, Textures* textures);
 	virtual ~SmartGhost();
-
+	virtual void animate() { if (!dead) GameCharacter::animate(); }
 	void update();
 
 	// Devuelve el valor del booleano dead
@@ -37,7 +38,7 @@ public:
 	// Comprueba si es adulto
 	bool isAdult() { return(age > ADULT_AGE); }
 	// Reinicia timeExit y llama death
-	virtual void death() { timeExit = TIME_SALIDA; GameCharacter::death(); }
+	virtual void death(); //
 	// Lee lo necesario del archivo para cargar el SmartGhost
 	void loadFromFile(ifstream& level);
 	// Guarda en un archivo la información del SmartGhost

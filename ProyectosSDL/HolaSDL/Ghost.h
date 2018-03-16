@@ -19,6 +19,8 @@ protected:
 	// Elimina de las posibilidades la direccion de la que viene si es posible
 	void eraseBackDir(); 
 
+	virtual void animate();
+
 public:
 	Ghost(PlayState* playState, Textures* textures);
 	virtual ~Ghost();

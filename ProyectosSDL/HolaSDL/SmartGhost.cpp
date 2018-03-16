@@ -19,7 +19,7 @@ void SmartGhost::update()
 	if (age < ADULT_AGE || timeExit > 0)
 		Ghost::update();
 	else if (age < DEATH_AGE) {
-		selectDir();
+		selectNearestDir();
 		canGiveBirth();
 		GameCharacter::update();
 	}
@@ -54,7 +54,7 @@ void SmartGhost::giveBirth()
 }
 
 // Selecciona la direccion del movimiento
-void SmartGhost::selectDir()
+void SmartGhost::selectNearestDir()
 {
 	targetPos = playState->getPacmanPos();
 	possibleDirs();
@@ -93,7 +93,7 @@ void SmartGhost::canGiveBirth()
 		aux.x = posAct.x + directions[i].x;
 		aux.y = posAct.y + directions[i].y;
 
-		while (i < numDirs && playState->isSmartGhost(aux)) {
+		while (i < numDirs && !playState->isSmartGhostDead(aux)) {
 			i++;
 			aux.x = posAct.x + directions[i].x;
 			aux.y = posAct.y + directions[i].y;
@@ -109,7 +109,15 @@ void SmartGhost::canGiveBirth()
 void SmartGhost::dieOld() {
 	dead = true;
 	dir = { 0,0 };
+	frame.x = 12;
+	frame.y = 1;
+	frameOrigX_ = 12;
 	playState->dismissDeathSG();
+}
+
+void SmartGhost::death()
+{
+	timeExit = TIME_SALIDA;
 }
 
 // Lee lo necesario del archivo para cargar el SmartGhost

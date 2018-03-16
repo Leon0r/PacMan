@@ -193,20 +193,22 @@ bool PlayState::isGhost(par pos)
 // Comprueba si hay un SmartGhost el la posicion pos
 bool PlayState::isSmartGhost(par pos)
 {
-	it = objects.begin();
-	it++; it++;
-	SmartGhost* sg = dynamic_cast<SmartGhost*>(*it);
-	
-	while ((it != objects.end()) && sg != nullptr &&
-		sg->isAdult() && !sg->isDead() &&
-		(pos.x != sg->getPosAct().x || pos.y != sg->getPosAct().y)) {
-		it++;
-
-		if(it != objects.end())
-			sg = dynamic_cast<SmartGhost*>(*it);
+	if (isGhost(pos)) {
+		SmartGhost* sg = dynamic_cast<SmartGhost*>(*it);
+		if (sg != nullptr && sg->isAdult())
+			return true;
 	}
+	return false;
+}
 
-	return (!(it == objects.end()));
+// Comprueba si esta muerto o no
+bool PlayState::isSmartGhostDead(par pos)
+{
+	if (isSmartGhost(pos)) {
+		if (dynamic_cast<SmartGhost*>(*it)->isDead())
+			return true;
+	}
+	return false;
 }
 
 // Devuelve true si hay comida o vitamina en esa posición
@@ -219,7 +221,7 @@ bool PlayState::isEatable(const par pos, int& type)
 // Devuelve true si se puede comer el smartGhost por estar muerto
 bool PlayState::isSmartGhostEatable(par pos)
 {
-	return (isSmartGhost(pos) && static_cast<SmartGhost*>(*it)->isDead());
+	return (isSmartGhostDead(pos));
 }
 
 // Cambia la casilla vacias y resta comida
@@ -232,8 +234,12 @@ void PlayState::wasEaten(const par pos)
 // Determina el efecto de la colisión
 void PlayState::collisionHandler()
 {
-	if (pacman->hasVitamin())
+	if (pacman->hasVitamin() || isSmartGhostEatable(pacman->getPosAct())) {
 		dynamic_cast<GameCharacter*>(*it)->death();
+
+		if(isSmartGhostEatable(pacman->getPosAct()))
+			objects.remove(*it);
+	}
 	else
 		pacman->death();
 }

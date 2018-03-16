@@ -69,3 +69,17 @@ void Ghost::eraseBackDir() {
 		}
 	}
 }
+
+void Ghost::animate()
+{
+	if (!playState->pacmanHasVitamin()) {
+		GameCharacter::animate();
+	}
+	else {
+		frame.y = 0;
+		if (switchAnim)
+			frame.x = 12;
+		else
+			frame.x = 13;
+	}
+}

@@ -47,7 +47,8 @@ public:
 	par getNextPosToroide(const par pos, const par dir);
 	// Devuelve la posAct del Pacman
 	par getPacmanPos() { return pacman->getPosAct(); }
-
+	// Devuelve true si pacman tiene vitamina
+	bool pacmanHasVitamin() { return pacman->hasVitamin(); }
 	// Devuelve true si las posición 'pos' hay muro
 	bool isWall(const par pos);
 	// Comprueba si hay un fantasma el la posAct del Pacman
@@ -56,6 +57,8 @@ public:
 	bool isGhost(par pos);
 	// Comprueba si hay un SmartGhost el la posicion pos
 	bool isSmartGhost(par pos);
+	// Comprueba si esta muerto o no
+	bool isSmartGhostDead(par pos);
 	// Devuelve true si hay comida o vitamina en esa posición
 	bool isEatable(const par pos, int& type);
 	// Devuelve true si se puede comer el smartGhost por estar muerto
