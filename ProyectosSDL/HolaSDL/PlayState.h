@@ -61,5 +61,7 @@ public:
 	void endGame();
 	// Escribe en consola los puntos y las vidas de Pacman
 	void consoleHUD();
+	// Añade un SmartGhost a la lista de GameObjects
+	void newSmartGhost(SmartGhost* ghost);
 };
 

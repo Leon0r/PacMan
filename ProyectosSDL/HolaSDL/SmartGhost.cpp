@@ -48,7 +48,7 @@ void SmartGhost::giveBirth()
 	SmartGhost* ghost = new SmartGhost(playState, texture);
 	fillNewSmartGhost(ghost);
 
-	//playState->newSmartGhost(ghost);  ///hacer metodo en playState
+	playState->newSmartGhost(ghost);
 }
 
 void SmartGhost::selectDir()

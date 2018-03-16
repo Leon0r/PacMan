@@ -225,6 +225,12 @@ void PlayState::consoleHUD()
 	cout << "Has Vitamin? " << pacman->hasVitamin() << endl;
 }
 
+void PlayState::newSmartGhost(SmartGhost * ghost)
+{
+	objects.push_back(ghost);
+	// objects.back()->render();
+}
+
 // Devuelve la sig pos en esa direccion teniendo en cuenta el toroide
 unsigned int PlayState::Right(const int posX)
 {
