@@ -3,9 +3,16 @@
 
 MainMenuState::MainMenuState(Game* game) : GameState(game)
 {
-	objects.push_back(new MenuButton(game->getTexture(1), 400, 500, 50, 120, loadSavedGame, game));
-	objects.push_back(new MenuButton(game->getTexture(2), 100, 100, 50, 120, loadNewGame, game));
-	objects.push_back(new MenuButton(game->getTexture(3), 250, 250, 50, 120, exitGame, game));
+	renderBackground();
+	objects.push_back(new MenuButton(game->getTexture(1), 340, 300, 50, 120, loadSavedGame, game));
+	objects.push_back(new MenuButton(game->getTexture(2), 150, 300, 50, 120, loadNewGame, game));
+	objects.push_back(new MenuButton(game->getTexture(3), 250, 400, 50, 120, exitGame, game));
+}
+
+void MainMenuState::render()
+{
+	renderBackground();
+	GameState::render();
 }
 
 void MainMenuState::loadNewGame(Game* game) {

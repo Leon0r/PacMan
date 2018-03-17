@@ -27,5 +27,6 @@ public:
 
 	virtual void update();
 	virtual void render();
+	virtual void renderBackground();
 	virtual bool handleEvent(SDL_Event& event);
 };

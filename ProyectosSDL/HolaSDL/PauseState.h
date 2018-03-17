@@ -9,6 +9,8 @@ public:
 	PauseState(Game* game);
 	virtual ~PauseState() {}
 
+	virtual void render();
+
 	bool handleEvent(SDL_Event& event);
 	static void resume(Game* game);
 	static void exitGame(Game* game);
