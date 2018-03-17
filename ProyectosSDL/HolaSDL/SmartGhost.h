@@ -3,7 +3,7 @@
 #include "checkML.h"
 
 const int ADULT_AGE = 40;
-const int DEATH_AGE = 50;
+const int DEATH_AGE = 2000;
 const int TIME_SALIDA = 30;
 
 class SmartGhost :
@@ -20,8 +20,10 @@ protected:
 	// Completa los datos de un SmartGhost y llama al PlayState para crearlo
 	virtual void giveBirth();
 	// Selecciona la direccion del movimiento
+	// Busca la mas cercana a pacman
 	virtual void selectNearestDir();
-	////////////////////AQUI VA OTRO
+	// Busca la mas lejana a pacman
+	virtual void selectFurthestDir();
 	// Comprueba las condiciones para que sea posible tener hijos
 	virtual void canGiveBirth();
 	// Desactiva completamente el SmartGhost

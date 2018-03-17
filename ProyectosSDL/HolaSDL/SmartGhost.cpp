@@ -19,7 +19,11 @@ void SmartGhost::update()
 	if (age < ADULT_AGE || timeExit > 0)
 		Ghost::update();
 	else if (age < DEATH_AGE) {
-		selectNearestDir();
+		if (playState->pacmanHasVitamin())
+			selectFurthestDir(); // si pacman tiene vitamina, huyen de el
+		else // si no, le buscan
+			selectNearestDir();
+
 		canGiveBirth();
 		GameCharacter::update();
 	}
@@ -62,11 +66,15 @@ void SmartGhost::selectNearestDir()
 	if (numDirs > 0) { // Solo busca dir si tiene mas de una posibilidad
 					   // Solo quita hacia atras si esta en cruces
 					   // Principalmente es para que no parpadee en la celda donde empieza
-		int dirAux;
+					   // Inicia con la primera dir a la que puede ir
 
-		int dist = 30000;
+		int dirAux = 0;
+		// dist es la distancia en nº de celdas entre ghost y pacman
+		int dist = abs((posAct.x + directions[0].x) - targetPos.x) +
+			abs((posAct.y + directions[0].y) - targetPos.y);
+
 		int aux;
-		for (int i = 0; i < numDirs; i++) {
+		for (int i = 1; i < numDirs; i++) {
 			{
 				// Calcula la coordenada que le deja mas "cerca" del pacman
 				aux = abs((posAct.x + directions[i].x) - targetPos.x) +
@@ -84,19 +92,52 @@ void SmartGhost::selectNearestDir()
 	}
 }
 
+void SmartGhost::selectFurthestDir()
+{
+	targetPos = playState->getPacmanPos();
+	possibleDirs();
+
+	if (numDirs > 0) { // Solo busca dir si tiene mas de una posibilidad
+					   // Solo quita hacia atras si esta en cruces
+					   // Principalmente es para que no parpadee en la celda donde empieza
+
+		// Inicia con la primera dir a la que puede ir
+		int dirAux = 0;
+		// dist es la distancia en nº de celdas entre ghost y pacman
+		int dist = abs((posAct.x + directions[0].x) - targetPos.x) +
+			abs((posAct.y + directions[0].y) - targetPos.y);
+		int aux;
+		for (int i = 1; i < numDirs; i++) {
+			{
+				// Calcula la coordenada que le deja mas "lejos" del pacman
+				aux = abs((posAct.x + directions[i].x) - targetPos.x) +
+					abs((posAct.y + directions[i].y) - targetPos.y);
+
+				// Guarda la pos de la dir mas lejana
+				if (aux > dist) {
+					dist = aux;
+					dirAux = i;
+				}
+			}
+		}
+		dir.x = directions[dirAux].x;
+		dir.y = directions[dirAux].y;
+	}
+}
+
 // Comprueba las condiciones para que sea posible tener hijos
 void SmartGhost::canGiveBirth()
 {
 	if (!dead && age > ADULT_AGE && playState->getNumSG() < MAX_SMART_GHOSTS) {
-		int i = 0;
+		
 		par aux;
-		aux.x = posAct.x + directions[i].x;
-		aux.y = posAct.y + directions[i].y;
-
+		aux.x = posAct.x + directions[0].x;
+		aux.y = posAct.y + directions[0].y;
+		int i = 1;
 		while (i < numDirs && !playState->isSmartGhostDead(aux)) {
-			i++;
 			aux.x = posAct.x + directions[i].x;
 			aux.y = posAct.y + directions[i].y;
+			i++;
 		}
 
 		if (i < numDirs) {
