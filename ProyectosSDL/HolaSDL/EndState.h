@@ -9,6 +9,8 @@ public:
 	EndState(Game* game);
 	virtual ~EndState(){}
 
+	virtual void render();
+
 	static void loadMenuState(Game* game);
 	static void exitGame(Game* game);
 };
