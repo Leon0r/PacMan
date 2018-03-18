@@ -9,7 +9,13 @@ PauseState::PauseState(Game* game) : GameState(game)
 	objects.push_back(new MenuButton(game->getTexture(1), 200, 500, 50, 120, loadMenuState, game));
 }
 
-bool PauseState::handleEvent(SDL_Event& event) 
+void PauseState::render()
+{
+	renderBackground();
+	GameState::render();
+}
+
+bool PauseState::handleEvent(SDL_Event& event)
 {
 	return GameState::handleEvent(event);
 }

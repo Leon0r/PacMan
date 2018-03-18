@@ -24,6 +24,15 @@ void GameState::render()
 		o->render();
 }
 
+void GameState::renderBackground()
+{
+	SDL_Rect fondo;
+	fondo.x = 0; fondo.y = 0;
+	fondo.w = WIN_WIDTH; fondo.h = WIN_HEIGTH;
+	game->getTexture(0)->renderFullText(fondo);
+}
+
+
 bool GameState::handleEvent(SDL_Event& event) 
 {
 	bool handled = false; // Comprueba si el evento ya ha sido recogido por algún botón

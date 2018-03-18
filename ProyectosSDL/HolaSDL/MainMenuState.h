@@ -8,6 +8,8 @@ class MainMenuState :
 public:
 	MainMenuState(Game* game);
 	virtual ~MainMenuState() {}
+	
+	virtual void render();
 
 	static void loadNewGame(Game* game);
 	static void loadSavedGame(Game* game);
