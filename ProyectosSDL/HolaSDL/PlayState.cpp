@@ -36,6 +36,9 @@ void PlayState::update() {
 
 	GameState::update();
 
+	if (winLevel())
+		nextLevel();
+
 	frameTime = SDL_GetTicks() - startTime; // Calcula el tiempo del update del playState
 
 	// Si no ha pasado el tiempo definido en FRAME_RATE, hay delay de lo que falta
@@ -80,36 +83,13 @@ void PlayState::loadGame(string fileName, bool newGame)
 
 		map = new GameMap(this, game->getTexture(5));
 		objects.push_front(map);
-		dynamic_cast<GameMap*>(objects.front())->loadFromFile(file);
+		map->loadFromFile(file);
 
-		int numGhosts, typeGhost;
-		file >> numGhosts;
-
-		for (int i = 0; i < numGhosts; i++) {
-			try {
-				file >> typeGhost;
-				if (typeGhost == 0) {
-					objects.push_back(new Ghost(this, game->getTexture(6)));
-					dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
-				}
-				else if (typeGhost == 1) {
-					objects.push_back(new SmartGhost(this, game->getTexture(6)));
-					dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
-					numSmartGhosts++;
-				}
-				else
-					throw FileFormatError("Tipo de fantasma incorrecto");
-			}
-			catch (FileFormatError e) {
-				cout << e.what();
-				string s;
-				getline(file, s);
-			}
-		}
+		loadGhosts(file);
 
 		pacman = new Pacman(this, game->getTexture(6));
 		objects.push_front(pacman);
-		dynamic_cast<Pacman*>(objects.front())->loadFromFile(file);
+		pacman->loadFromFile(file);
 
 		if (!newGame)
 			pacman->setPoints(p);
@@ -117,6 +97,43 @@ void PlayState::loadGame(string fileName, bool newGame)
 	else
 		throw FileNotFoundError("archivo " + fileName + " no encontrado");
 	file.close();
+}
+
+void PlayState::loadGhosts(ifstream & file)
+{
+	int numGhosts, typeGhost;
+	file >> numGhosts;
+
+	for (int i = 0; i < numGhosts; i++) {
+		try {
+			file >> typeGhost;
+			if (typeGhost == 0) {
+				objects.push_back(new Ghost(this, game->getTexture(6)));
+				dynamic_cast<Ghost*>(objects.back())->loadFromFile(file);
+			}
+			else if (typeGhost == 1) {
+				objects.push_back(new SmartGhost(this, game->getTexture(6)));
+				dynamic_cast<SmartGhost*>(objects.back())->loadFromFile(file);
+				numSmartGhosts++;
+			}
+			else
+				throw FileFormatError("Tipo de fantasma incorrecto");
+		}
+		catch (FileFormatError e) {
+			cout << e.what();
+			string s;
+			getline(file, s);
+		}
+	}
+}
+
+void PlayState::popGhosts()
+{
+	list <GameObject*>::iterator aux;
+	aux = objects.begin();
+	it = objects.begin();
+	aux++; // se salta pacman y gameMap
+	while (objects.size() > 2) { objects.pop_back(); }
 }
 
 // Guarda en un archivo la información del juego
@@ -240,8 +257,34 @@ void PlayState::collisionHandler()
 		if(isSmartGhostEatable(pacman->getPosAct()))
 			objects.remove(*it);
 	}
+	else{}
+		//pacman->death();
+}
+
+// Carga el siguiente nivel o el mismo si no existe
+void PlayState::nextLevel()
+{
+	popGhosts(); // quita todos los fantasmas que queden en la lista de objetos
+	ifstream file;
+	int name = level_ + 1;
+
+	string fileName = "..\\levels\\level0" + to_string(name);
+	fileName += ".pac";
+
+	file.open(fileName);
+
+	if (!file.fail()) {
+		
+		level_ = name;
+
+		map->loadFromFile(file);
+
+		loadGhosts(file);
+
+		pacman->loadFromFile(file);
+	}
 	else
-		pacman->death();
+		endGame();
 }
 
 // Pasa al estado EndState al morir

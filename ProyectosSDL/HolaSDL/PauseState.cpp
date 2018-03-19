@@ -11,7 +11,7 @@ PauseState::PauseState(Game* game) : GameState(game)
 
 void PauseState::render()
 {
-	renderBackground();
+	renderBackground(8);
 	GameState::render();
 }
 

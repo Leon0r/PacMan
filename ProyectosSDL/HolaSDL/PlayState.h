@@ -36,7 +36,11 @@ public:
 	void render();
 	bool handleEvent(SDL_Event& event);
 	// newGame = true si es partida desde nivel limpio 
-	void loadGame(string fileName, bool newGame); 
+	void loadGame(string fileName, bool newGame);
+	// carga los fantasmas
+	void loadGhosts(ifstream& file);
+	// Vacia los objetos fantasma que queden antes de pasar de nivel
+	void popGhosts();
     // Guarda en un archivo la información del juego
 	void saveToFile();
 
@@ -69,6 +73,8 @@ public:
 	void collisionHandler();
 	// Comprueba si has ganado
 	bool winLevel() { return (map->getNumMaxFood() <= 0); };
+	// Carga el siguiente nivel o el mismo si no existe
+	void nextLevel();
 	// Pasa al estado EndState al morir
 	void endGame();
 	// Escribe en consola los puntos y las vidas de Pacman

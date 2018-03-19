@@ -24,12 +24,12 @@ void GameState::render()
 		o->render();
 }
 
-void GameState::renderBackground()
+void GameState::renderBackground(int text)
 {
 	SDL_Rect fondo;
 	fondo.x = 0; fondo.y = 0;
 	fondo.w = WIN_WIDTH; fondo.h = WIN_HEIGTH;
-	game->getTexture(0)->renderFullText(fondo);
+	game->getTexture(text)->renderFullText(fondo);
 }
 
 

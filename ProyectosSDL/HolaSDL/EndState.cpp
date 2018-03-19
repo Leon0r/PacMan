@@ -9,7 +9,7 @@ EndState::EndState(Game* game) : GameState(game)
 
 void EndState::render()
 {
-	renderBackground();
+	renderBackground(7);
 	GameState::render();
 }
 

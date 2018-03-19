@@ -9,7 +9,7 @@
 
 using namespace std;
 
-const int NUM_TEXTURES = 7;
+const int NUM_TEXTURES = 9;
 const int WIN_WIDTH = 600;
 const int WIN_HEIGTH = 600;
 
@@ -43,7 +43,9 @@ private:
 		{ "..\\images\\ExitGame.png", 1, 1 },
 		{ "..\\images\\ResumeGame.png", 1, 1 },
 		{ "..\\sprites\\pacmanCellsFull.png", 4, 1 },
-		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
+		{ "..\\sprites\\pacmanSheet.png", 4, 14 },
+		{ "..\\images\\Background_End.png", 1, 1 },
+		{ "..\\images\\Background_Pause.png", 1, 1 }
 	};
 
 public:
